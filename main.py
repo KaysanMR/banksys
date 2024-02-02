@@ -1,9 +1,9 @@
 import accounts
 
-userlist = accounts.load_users("accounts.txt")
 
+def main():
+    userlist = accounts.load_users("accounts.txt")
 
-def menu():
     while True:
         print("\n")
         print("1. Sign in")
@@ -30,7 +30,4 @@ def menu():
                 print("Invalid choice")
 
 
-menu()
-
-
-print(userlist[0])
+main()
