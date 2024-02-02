@@ -1,3 +1,7 @@
+import accounts
+
+userlist = accounts.load_users("accounts.txt")
+
 def menu():
   while True:
     print("\n")
@@ -8,11 +12,10 @@ def menu():
 
     match choice:
       case 1:
-        #login()
         print("sign in")
       case 2:
-        #create_account()
-        print("create account")
+        print("\nCREATE ACCOUNT")
+        accounts.new_user()
       case 3:
         match input("\nAre you sure you want to exit? (y/n) \n> "):
           case "y":
@@ -25,4 +28,5 @@ def menu():
         print("Invalid choice")  
 
 
-menu()
+# menu()
+print(userlist[0])

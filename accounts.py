@@ -15,17 +15,11 @@ def write(text):
     file.write(text)
 
 
-new_user()
-
-
 def load_users(filename):
   with open(filename, "r") as file:
     content = file.readlines()
     return [line.strip().split(',') for line in content]
 
-
-userlist = load_users("accounts.txt")
-print(userlist[0][0])
 
 def new_id():
   return "ABC123"
