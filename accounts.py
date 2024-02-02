@@ -1,29 +1,30 @@
 
-import random
-import math
-id_list = []
-
-def generate_id():
-  id = math.floor(random.random() * 1006)
-  id_list.append(id) if id not in id_list else generate_id()
-  return id
   
-def create():
+def new_user():
   while True:
     username = input("Enter your username:")
     password = input("Enter your password:")
     if input("Confirm password: ") ==  password:
       print("Account created")
-      return [username, password]
+      write(f"{username}, {password}" + '\n')
+      break
     else:
       print("Passwords do not match.")
-      break
-  
-def store(credentials):
+
+
+def write(text):
   with open("accounts.txt", "a") as file:
-    file.write(f"[{generate_id()}, {', '.join(credentials)}]" + '\n')
-  
-  
-[store(create()) for i in range(3)]
+    file.write(text)
 
 
+new_user()
+
+
+def load_users(filename):
+  with open(filename, "r") as file:
+    content = file.readlines()
+    return [line.strip().split(',') for line in content]
+    
+    
+userlist = load_users("accounts.txt")
+print(userlist[0][0])
