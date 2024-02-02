@@ -12,7 +12,7 @@ def new_user():
 
 def write(text):
     with open("accounts.txt", "a") as file:
-        file.write(text)
+        return file.write(text)
 
 
 def load_users(filename):
@@ -23,3 +23,5 @@ def load_users(filename):
 
 def new_id():
     return "ABC123"
+
+

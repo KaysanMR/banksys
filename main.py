@@ -17,6 +17,7 @@ def menu():
             case 2:
                 print("\nCREATE ACCOUNT")
                 accounts.new_user()
+                continue
             case 3:
                 match input("\nAre you sure you want to exit? (y/n) \n> "):
                     case "y":
@@ -28,7 +29,8 @@ def menu():
             case _:
                 print("Invalid choice")
 
-            # menu()
+
+menu()
 
 
 print(userlist[0])

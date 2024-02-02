@@ -1,2 +1,4 @@
-Kaysan, Password
-Bakyt, login2
+ABC123, Kaysan, 123
+ABC123, NewUser, pass
+ABC123, User2, Pass
+ABC123, User3, Pass
