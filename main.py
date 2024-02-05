@@ -14,10 +14,13 @@ def main():
         match choice:
             case 1:
                 print("sign in")
+
             case 2:
                 print("\nCREATE ACCOUNT")
-                accounts.new_user()
+                accounts.new_user(userlist)
+                accounts.write(userlist)
                 continue
+
             case 3:
                 match input("\nAre you sure you want to exit? (y/n) \n> "):
                     case "y":
@@ -26,8 +29,10 @@ def main():
                         continue
                     case _:
                         print("Invalid choice")
+
             case _:
                 print("Invalid choice")
 
 
 main()
+

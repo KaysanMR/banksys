@@ -1,14 +1,18 @@
-def new_user():
+def new_user(userlist):
     while True:
         username = input("Enter your username:")
+        for user in userlist:
+            if username in userlist:
+                print("foo")
+
         password = input("Enter your password:")
         if input("Confirm password: ") == password:
             print("Account created")
-            write(f"{new_id()}, {username}, {password}" + '\n')
+            userlist.append([new_id(), username, password])
+            # write(f"{new_id()}, {username}, {password}" + '\n')
             break
         else:
             print("Passwords do not match.")
-
 
 def write(text):
     with open("accounts.txt", "a") as file:
