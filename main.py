@@ -18,7 +18,6 @@ def main():
             case 2:
                 print("\nCREATE ACCOUNT")
                 accounts.new_user(userlist)
-                accounts.write(userlist)
                 continue
 
             case 3:
