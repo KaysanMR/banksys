@@ -18,7 +18,8 @@ def main():
             case 2:
                 print("\nCREATE ACCOUNT")
                 accounts.new_user(userlist)
-                continue
+                accounts.save(userlist)
+                # continue
 
             case 3:
                 match input("\nAre you sure you want to exit? (y/n) \n> "):

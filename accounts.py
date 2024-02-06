@@ -9,11 +9,10 @@ def new_user(data):
             if username == user[1]:
                 print("Username already exists, please try again.")
                 username = None
-            else:
-                break
 
     uid = new_id(username)
-    password = uid[:6]
+    password = username[:3] + uid[8:]
+
     data.append([uid, username, password])
 
 
@@ -28,15 +27,11 @@ def set_pass(user):
             print("Passwords do not match.")
 
 
-def write(text):
-    with open("accounts.txt", "a") as file:
-        return file.write(text)
-
-
 def load_users(filename):
     with open(filename, "r") as file:
         content = file.readlines()
-        return [line.strip().split(', ') for line in content]
+        data = [line.strip('][\n').replace('\'', '').split(", ") for line in content]
+        return data
 
 
 def new_id(username):
@@ -46,12 +41,15 @@ def new_id(username):
 
 
 def save(data):
-    for x in data:
-        write(f"{[user for user in data]}" + '\n')
+    with open("accounts.txt", "w") as file:
+        for user in data:
+            file.write(repr([item for item in user]) + '\n')
 
 
 if __name__ == "__main__":
     userlist = load_users("accounts.txt")
     print(userlist)
     new_user(userlist)
-    print(userlist)
+
+
+

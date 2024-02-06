@@ -1,4 +1,2 @@
-ABC123, Kaysan, 123
-ABC123, NewUser, pass
-ABC123, User2, Pass
-ABC123, User3, Pass
+['LEE1707193250', 'Lee', 'LEE170']
+['KHA1707194346', 'Khalid', 'Kha94346']
