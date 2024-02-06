@@ -1,19 +1,28 @@
-def new_user(userlist):
-    while True:
-        username = None
-        while not username:
-            username = input("Enter your username:")
-            for user in userlist:
-                if username == user[1]:
-                    print("Username already exists, please try again.")
-                    username = None
-                    continue
+from datetime import datetime
 
+
+def new_user(data):
+    username = None
+    while not username:
+        username = input("Enter username:")
+        for user in data:
+            if username == user[1]:
+                print("Username already exists, please try again.")
+                username = None
+            else:
+                break
+
+    uid = new_id(username)
+    password = uid[:6]
+    data.append([uid, username, password])
+
+
+def set_pass(user):
+    while True:
         password = input("Enter your password:")
         if input("Confirm password: ") == password:
             print("Account created")
-            userlist.append([new_id(), username, password])
-
+            user[2] = password
             break
         else:
             print("Passwords do not match.")
@@ -30,8 +39,10 @@ def load_users(filename):
         return [line.strip().split(', ') for line in content]
 
 
-def new_id():
-    return "ABC123"
+def new_id(username):
+    timestamp = round(datetime.timestamp(datetime.now()))
+    identifier = username[:3].upper() + str(timestamp)
+    return identifier
 
 
 def save(data):
@@ -39,8 +50,8 @@ def save(data):
         write(f"{[user for user in data]}" + '\n')
 
 
-# userlist = load_users("accounts.txt")
-# print(userlist)
-# for i in range(3):
-#     new_user(userlist)
-#     print(userlist)
+if __name__ == "__main__":
+    userlist = load_users("accounts.txt")
+    print(userlist)
+    new_user(userlist)
+    print(userlist)
