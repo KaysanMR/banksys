@@ -14,6 +14,7 @@ def new_user(data):
     password = username[:3] + uid[8:]
 
     data.append([uid, username, password])
+    save(data)
 
 
 def set_pass(user):
@@ -46,10 +47,26 @@ def save(data):
             file.write(repr([item for item in user]) + '\n')
 
 
+def login(data):
+    while True:
+        uid = input("\nEnter your UID: ")
+
+        try:
+            user = [user for user in data if user[0] == uid][0]
+            password = input("Enter your password: ")
+            if password == user[2]:
+                print("Logged in successfully.")
+                return user
+            else:
+                print("Incorrect password, please try again.")
+
+        except IndexError:
+            print("UID does not match any known user. "
+                  "\nPlease reach out to staff to create a new account.")
+
+
 if __name__ == "__main__":
     userlist = load_users("accounts.txt")
     print(userlist)
-    new_user(userlist)
-
-
+    login(userlist)
 

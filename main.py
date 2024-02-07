@@ -5,7 +5,7 @@ def main():
     userlist = accounts.load_users("accounts.txt")
 
     while True:
-        print("\n")
+        print("\n-----MENU-----")
         print("1. Sign in")
         print("2. Create account")
         print("3. Exit")
@@ -13,13 +13,13 @@ def main():
 
         match choice:
             case 1:
-                print("sign in")
+                print("\n-----SIGN IN-----")
+                user = accounts.login(userlist)
+                print(user)
 
             case 2:
-                print("\nCREATE ACCOUNT")
+                print("\n-----CREATE ACCOUNT-----")
                 accounts.new_user(userlist)
-                accounts.save(userlist)
-                # continue
 
             case 3:
                 match input("\nAre you sure you want to exit? (y/n) \n> "):
@@ -36,4 +36,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
