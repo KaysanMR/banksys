@@ -15,14 +15,16 @@ def new_user(data):
 
     data.append([uid, username, password])
     save(data)
+    print("Account created")
 
 
-def set_pass(user):
+def set_pass(user, data):
     while True:
         password = input("Enter your password:")
         if input("Confirm password: ") == password:
-            print("Account created")
             user[2] = password
+            save(data)
+            print("Password changed successfully.")
             break
         else:
             print("Passwords do not match.")
@@ -68,5 +70,5 @@ def login(data):
 if __name__ == "__main__":
     userlist = load_users("accounts.txt")
     print(userlist)
-    login(userlist)
-
+    current_user = login(userlist)
+    set_pass(current_user, userlist)
