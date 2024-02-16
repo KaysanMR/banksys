@@ -54,22 +54,28 @@ def save(data, file="accounts.txt"):
             file.write(repr([item for item in user]) + '\n')
 
 
-def login(data):
+def login(users, admins):
     while True:
         uid = input("\nEnter your UID: ")
+        if uid[-1] == "A":
+            validate_user(admins, uid)
+        else:
+            validate_user(users, uid)
 
-        try:
-            user = [user for user in data if user[0] == uid][0]
-            password = input("Enter your password: ")
-            if password == user[2]:
-                print("Logged in successfully.")
-                return user
-            else:
-                print("Incorrect password, please try again.")
 
-        except IndexError:
-            print("UID does not match any known user. "
-                  "\nPlease reach out to staff to create a new account.")
+def validate_user(data, uid):
+    try:
+        user = [user for user in data if user[0] == uid][0]
+        password = input("Enter your password: ")
+        if password == user[2]:
+            print("Logged in successfully.")
+            return user
+        else:
+            print("Incorrect password, please try again.")
+
+    except IndexError:
+        print("UID does not match any known user. "
+              "\nPlease reach out to staff to create a new account.")
 
 
 def view_user(user):

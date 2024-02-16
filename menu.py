@@ -3,11 +3,11 @@ import accounts
 
 
 def current_time():
-    time = datetime.now().strftime("%H:%M:%S %Y-%m-%d")  # Format time to time, date format
+    time = datetime.now().strftime("%H:%M:%S %d-%m-%Y")  # Format time to time, date format
     return time
 
 
-def main_menu(data):
+def main_menu(users, admins):
     while True:
         print("\n-----MENU-----")
         print(f"Welcome! It is currently {current_time()}")
@@ -18,8 +18,8 @@ def main_menu(data):
         match choice:
             case "1":
                 print("\n-----SIGN IN-----")
-                user = accounts.login(data)
-                user_menu(data, user)
+                user = accounts.login(users, admins)
+                user_menu(user)
             case "2":
                 match input("\nAre you sure you want to exit? (y/n): > "):
                     case "y":
@@ -29,7 +29,7 @@ def main_menu(data):
                     case _:
                         print("Invalid choice")
             case "admin":  # temp entry to admin menu
-                admin_menu(data)
+                admin_menu(users)
             case _:
                 print("Invalid choice")
 
@@ -69,7 +69,7 @@ def admin_menu(data):
                 print("Invalid choice")
 
 
-def user_menu(data, user):
+def user_menu(user):
     while True:
         print("\n-----MENU-----")
         print(f"Welcome, {user[1]}! It is currently {current_time()}")

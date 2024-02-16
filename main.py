@@ -4,7 +4,8 @@ import menu
 
 def main():
     userlist = accounts.load_users("accounts.txt")
-    menu.main_menu(userlist)
+    admins = accounts.load_users("admin.txt")
+    menu.main_menu(userlist, admins)
 
 
 if __name__ == "__main__":
