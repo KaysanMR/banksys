@@ -72,6 +72,12 @@ def login(data):
                   "\nPlease reach out to staff to create a new account.")
 
 
+def view_user(user):
+    print(f"ID:       {user[0]}\n"
+          f"Username: {user[1]}")
+    input("\nPress ENTER / RETURN to exit.")
+
+
 if __name__ == "__main__":
     userlist = load_users("accounts.txt")
     admins = load_users("admin.txt")

@@ -1,4 +1,5 @@
-import accounts, menu
+import accounts
+import menu
 
 
 def main():
