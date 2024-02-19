@@ -3,7 +3,7 @@ import menu
 
 
 def main():
-    userlist = accounts.load_users("accounts.txt")
+    userlist = accounts.load_file("accounts.txt")
     menu.main_menu(userlist)
 
 

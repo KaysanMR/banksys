@@ -33,13 +33,6 @@ def set_pass(user, data):
             print("Passwords do not match.")
 
 
-def load_users(filename):
-    with open(filename, "r") as file:
-        content = file.readlines()
-        data = [line.strip('][\n').replace('\'', '').split(", ") for line in content]
-        return data
-
-
 def new_id(username, admin=False):
     timestamp = round(datetime.timestamp(datetime.now()))
     identifier = username[:3].upper() + str(timestamp)
@@ -48,10 +41,20 @@ def new_id(username, admin=False):
     return identifier
 
 
+def load_file(filename):
+    try:
+        with open(filename, "r") as file:
+            content = file.readlines()
+            data = [line.strip().split(",") for line in content]
+            return data
+    except FileNotFoundError:
+        return None
+
+
 def save(data, file="accounts.txt"):
     with open(file, "w") as file:
         for user in data:
-            file.write(repr([item for item in user]) + '\n')
+            file.write(",".join(user) + '\n')
 
 
 def login(data):
@@ -79,7 +82,7 @@ def view_user(user):
 
 
 if __name__ == "__main__":
-    userlist = load_users("accounts.txt")
-    admins = load_users("admin.txt")
+    userlist = load_file("accounts.txt")
+    admins = load_file("admin.txt")
     print(admins)
     new_user(userlist)
