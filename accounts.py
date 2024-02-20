@@ -1,5 +1,7 @@
 from datetime import datetime
-import display, menu
+
+import display
+import menu
 
 
 def new_user(data, admin=False):
@@ -112,10 +114,16 @@ def view_user(user):
 
 
 def search(data):
-    keyword = input("Enter username or user ID: ")
-    results = [item for item in data if
-               keyword in item[0] or
-               keyword in item[1]]
+    results = None
+    repeat = False
+    while not results:
+        if repeat:
+            print("No results for search term, please try again.")
+        keyword = input("Search username or user ID: ").upper()
+        results = [item for item in data if
+                   keyword in item[0].upper() or
+                   keyword in item[1].upper()]
+        repeat = True
     return results
 
 
@@ -124,14 +132,16 @@ def manage(data):
     headings = ["UID", "USERNAME"]
     display.table(users, headings)
 
-    select = input("Select user #: ")
-    user = users[int(select) - 1]
-    print(user)
+    while True:
+        select = input("Select user #: ")
+        if int(select) - 1 in range(len(users)):
+            user = users[int(select) - 1]
+            print(user)
+            break
+        else:
+            print(f"Please select an item in range 1-{len(users) + 1}")
 
 
 if __name__ == "__main__":
-    # userlist = load("accounts.txt")
-    # admins = load("admin.txt")
-    # print(admins)
-    # new_user(userlist)
-    check_admin("EAG1708323630")
+    userlist = load("accounts.txt")
+    manage(userlist)
