@@ -1,19 +1,14 @@
 from datetime import datetime
-import accounts
-
-
-def current_time():
-    time = datetime.now().strftime("%H:%M:%S %Y-%m-%d")  # Format time to time, date format
-    return time
+import accounts, display
 
 
 def main_menu(user_list, admin_list):
     while True:
         print("\n-----MENU-----")
-        print(f"Welcome! It is currently {current_time()}")
+        display.greet()
         print("  1. Sign in")
         print("  2. Exit")
-        choice = input("Enter your choice: \n> ")
+        choice = input("Enter your choice: ")
 
         match choice:
             case "1":
@@ -21,7 +16,7 @@ def main_menu(user_list, admin_list):
                 accounts.login(user_list, admin_list)
 
             case "2":
-                match input("\nAre you sure you want to exit? (y/n): > "):
+                match input("\nAre you sure you want to exit? (y/n): "):
                     case "y":
                         break
                     case "n":
@@ -37,7 +32,7 @@ def main_menu(user_list, admin_list):
 def admin_menu(user_list, user):
     while True:
         print("\n-----MENU-----")
-        print(f"Welcome, {user[1]}! It is currently {current_time()}")
+        display.greet(user)
         print("  1. Create account")
         print("  2. Manage accounts")
         print("  3. View logs")
@@ -51,14 +46,14 @@ def admin_menu(user_list, user):
 
             case "2":
                 print("\n-----MANAGE ACCOUNTS-----")
-                # Manage accounts
+                accounts.manage(user_list)
 
             case "3":
                 print("\n-----LOGS-----")
                 # Display logs
 
             case "4":
-                match input("\nLog out? (y/n): > "):
+                match input("\nLog out? (y/n): "):
                     case "y":
                         break
                     case "n":
@@ -73,12 +68,12 @@ def admin_menu(user_list, user):
 def user_menu(user_list, user):
     while True:
         print("\n-----MENU-----")
-        print(f"Welcome, {user[1]}! It is currently {current_time()}")
+        display.greet(user)
         print("  1. My Account")
         print("  2. Deposit / Withdraw")
         print("  3. Bank Statement")
         print("  4. Exit")
-        choice = input("Enter your choice: > ")
+        choice = input("Enter your choice: ")
 
         match choice:
             case "1":
@@ -94,7 +89,7 @@ def user_menu(user_list, user):
                 # Display logs for user (in date range)
 
             case "4":
-                match input("\nLog out? (y/n): > "):
+                match input("\nLog out? (y/n): "):
                     case "y":
                         break
                     case "n":
@@ -105,6 +100,4 @@ def user_menu(user_list, user):
             case _:
                 print("Invalid choice")
 
-
-if __name__ == "__main__":
-    current_time()
+# if __name__ == "__main__":

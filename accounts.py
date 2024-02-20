@@ -1,5 +1,5 @@
 from datetime import datetime
-import menu
+import display, menu
 
 
 def new_user(data, admin=False):
@@ -109,6 +109,15 @@ def view_user(user):
     print(f"ID:       {user[0]}\n"
           f"Username: {user[1]}")
     input("\nPress ENTER / RETURN to exit.")
+
+
+def manage(user_list):
+    headings = ["UID", "USERNAME"]
+    display.table(user_list, headings)
+
+    select = input("Select user #: ")
+    user = user_list[int(select) - 1]
+    print(user)
 
 
 if __name__ == "__main__":
