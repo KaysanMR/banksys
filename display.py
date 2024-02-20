@@ -3,7 +3,7 @@ import accounts
 
 
 def current_time():
-    return datetime.now().strftime("%H:%M:%S %Y-%m-%d")  # Format time to time, date format
+    return datetime.now().strftime("%H:%M:%S %Y-%m-%d")  # format time to time, date format
 
 
 def greet(user=None):
@@ -14,10 +14,10 @@ def greet(user=None):
 
 
 def table(data, headings, cell_width=15):
-    cell = str("{:^" + str(cell_width) + "}￨")
+    cell = str("{:^" + str(cell_width) + "}￨")  # create format string "{:^n}"
     format_row = "￨{:^3}￨" + cell * (len(headings))
     divider_line = ("---",) + (("-" * cell_width),) * len(headings)
-
+    # start printing table
     print(format_row.format("#", *headings))
     print(format_row.format(*divider_line))
     for index, item in enumerate(data):

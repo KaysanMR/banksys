@@ -24,18 +24,6 @@ def new_user(data, admin=False):
     print("Account created")
 
 
-def set_pass(user, data):
-    while True:
-        password = input("Enter your password:")
-        if input("Confirm password: ") == password:
-            user[2] = password
-            save(data)
-            print("Password changed successfully.")
-            break
-        else:
-            print("Passwords do not match.")
-
-
 def new_id(username, admin=False):
     timestamp = round(datetime.timestamp(datetime.now()))
     identifier = username[:3].upper() + str(timestamp)
@@ -61,24 +49,21 @@ def save(data, file="accounts.txt"):
 
 
 def check_admin(user_id):
-    if user_id[-1] == "A":
-        if user_id == "SUPERUSER_A":
-            return 0
-        else:
-            return 1
+    if user_id == "SUPERUSER_A":
+        return 0
+    elif user_id[-1] == "A":
+        return 1
     else:
         return 2
 
 
 def login(user_list, admin_list):
     while True:
-        session_user = None
-        admin = False
         user_id = input("\nEnter your UID: ")
         if user_id.upper() == "X": return
         match check_admin(user_id):
             case 0:
-                print("SUPERUSER MENU")  # Add supermenu
+                print("SUPERUSER MENU")  # add super menu
             case 1:
                 session_user = validate_user(admin_list, user_id)
                 if session_user:
@@ -87,13 +72,13 @@ def login(user_list, admin_list):
             case 2:
                 session_user = validate_user(user_list, user_id)
                 if session_user:
-                    menu.user_menu(user_list, session_user)
+                    menu.user_menu(session_user)
                     return session_user
 
 
 def validate_user(data, user_id):
     try:
-        user = [user for user in data if user[0] == user_id][0]  # Fetch username from data
+        user = [user for user in data if user[0] == user_id][0]  # fetch username from data
         password = input("Enter your password: ")
         if password == user[2]:
             print("Logged in successfully.")
@@ -128,10 +113,11 @@ def search(data):
 
 
 def manage(data):
+    # search & display results
     users = search(data)
     headings = ["UID", "USERNAME"]
     display.table(users, headings)
-
+    # select user to edit
     while True:
         select = input("Select user #: ")
         if int(select) - 1 in range(len(users)):
@@ -140,6 +126,7 @@ def manage(data):
             break
         else:
             print(f"Please select an item in range 1-{len(users) + 1}")
+    # edit function here
 
 
 if __name__ == "__main__":

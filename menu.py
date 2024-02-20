@@ -1,4 +1,5 @@
-import accounts, display
+import accounts
+import display
 
 
 def main_menu(user_list, admin_list):
@@ -62,7 +63,7 @@ def admin_menu(user_list, user):
                 print("Invalid choice")
 
 
-def user_menu(user_list, user):
+def user_menu(user):
     while True:
         print("\n-----MENU-----")
         display.greet(user)
