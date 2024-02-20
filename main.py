@@ -3,8 +3,9 @@ import menu
 
 
 def main():
-    userlist = accounts.load_file("accounts.txt")
-    menu.main_menu(userlist)
+    user_list = accounts.load("accounts.txt")
+    admin_list = accounts.load("admin.txt")
+    menu.main_menu(user_list, admin_list)
 
 
 if __name__ == "__main__":
