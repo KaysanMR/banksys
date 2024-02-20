@@ -23,8 +23,6 @@ def main_menu(user_list, admin_list):
                         continue
                     case _:
                         print("Invalid choice")
-            case "admin":  # temp entry to admin menu
-                admin_menu(user_list, admin_list)
             case _:
                 print("Invalid choice")
 
