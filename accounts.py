@@ -71,20 +71,22 @@ def check_admin(user_id):
 def login(user_list, admin_list):
     while True:
         session_user = None
+        admin = False
         user_id = input("\nEnter your UID: ")
+        if user_id.upper() == "X": return
         match check_admin(user_id):
             case 0:
                 print("SUPERUSER MENU")  # Add supermenu
             case 1:
-                print("foo")
                 session_user = validate_user(admin_list, user_id)
-                menu.admin_menu(user_list, session_user)
+                if session_user:
+                    menu.admin_menu(user_list, session_user)
+                    return session_user
             case 2:
-                print("bar")
                 session_user = validate_user(user_list, user_id)
-                menu.user_menu(user_list, session_user)
-        if session_user:
-            return session_user
+                if session_user:
+                    menu.user_menu(user_list, session_user)
+                    return session_user
 
 
 def validate_user(data, user_id):
@@ -99,7 +101,7 @@ def validate_user(data, user_id):
 
     except IndexError:
         print("UID does not match any known user. "
-              "\nPlease reach out to staff to create a new account.")
+              "\nEnter <X> to exit.")
         return None
 
 
