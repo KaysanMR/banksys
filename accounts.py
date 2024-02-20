@@ -1,4 +1,5 @@
 from datetime import datetime
+import menu
 
 
 def new_user(data, admin=False):
@@ -33,13 +34,6 @@ def set_pass(user, data):
             print("Passwords do not match.")
 
 
-def load_users(filename):
-    with open(filename, "r") as file:
-        content = file.readlines()
-        data = [line.strip('][\n').replace('\'', '').split(", ") for line in content]
-        return data
-
-
 def new_id(username, admin=False):
     timestamp = round(datetime.timestamp(datetime.now()))
     identifier = username[:3].upper() + str(timestamp)
@@ -48,24 +42,54 @@ def new_id(username, admin=False):
     return identifier
 
 
+def load(filename):
+    try:
+        with open(filename, "r") as file:
+            content = file.readlines()
+            data = [line.strip().split(",") for line in content]
+            return data
+    except FileNotFoundError:
+        return None
+
+
 def save(data, file="accounts.txt"):
     with open(file, "w") as file:
         for user in data:
-            file.write(repr([item for item in user]) + '\n')
+            file.write(",".join(user) + '\n')
 
 
-def login(users, admins):
-    while True:
-        uid = input("\nEnter your UID: ")
-        if uid[-1] == "A":
-            validate_user(admins, uid)
+def check_admin(user_id):
+    if user_id[-1] == "A":
+        if user_id == "SUPERUSER_A":
+            return 0
         else:
-            validate_user(users, uid)
+            return 1
+    else:
+        return 2
 
 
-def validate_user(data, uid):
+def login(user_list, admin_list):
+    while True:
+        session_user = None
+        user_id = input("\nEnter your UID: ")
+        match check_admin(user_id):
+            case 0:
+                print("SUPERUSER MENU")  # Add supermenu
+            case 1:
+                print("foo")
+                session_user = validate_user(admin_list, user_id)
+                menu.admin_menu(user_list, session_user)
+            case 2:
+                print("bar")
+                session_user = validate_user(user_list, user_id)
+                menu.user_menu(user_list, session_user)
+        if session_user:
+            return session_user
+
+
+def validate_user(data, user_id):
     try:
-        user = [user for user in data if user[0] == uid][0]
+        user = [user for user in data if user[0] == user_id][0]  # Fetch username from data
         password = input("Enter your password: ")
         if password == user[2]:
             print("Logged in successfully.")
@@ -76,6 +100,7 @@ def validate_user(data, uid):
     except IndexError:
         print("UID does not match any known user. "
               "\nPlease reach out to staff to create a new account.")
+        return None
 
 
 def view_user(user):
@@ -85,7 +110,8 @@ def view_user(user):
 
 
 if __name__ == "__main__":
-    userlist = load_users("accounts.txt")
-    admins = load_users("admin.txt")
-    print(admins)
-    new_user(userlist)
+    # userlist = load("accounts.txt")
+    # admins = load("admin.txt")
+    # print(admins)
+    # new_user(userlist)
+    check_admin("EAG1708323630")

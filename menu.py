@@ -3,11 +3,11 @@ import accounts
 
 
 def current_time():
-    time = datetime.now().strftime("%H:%M:%S %d-%m-%Y")  # Format time to time, date format
+    time = datetime.now().strftime("%H:%M:%S %Y-%m-%d")  # Format time to time, date format
     return time
 
 
-def main_menu(users, admins):
+def main_menu(user_list, admin_list):
     while True:
         print("\n-----MENU-----")
         print(f"Welcome! It is currently {current_time()}")
@@ -18,8 +18,8 @@ def main_menu(users, admins):
         match choice:
             case "1":
                 print("\n-----SIGN IN-----")
-                user = accounts.login(users, admins)
-                user_menu(user)
+                accounts.login(user_list, admin_list)
+
             case "2":
                 match input("\nAre you sure you want to exit? (y/n): > "):
                     case "y":
@@ -29,14 +29,15 @@ def main_menu(users, admins):
                     case _:
                         print("Invalid choice")
             case "admin":  # temp entry to admin menu
-                admin_menu(users)
+                admin_menu(user_list, admin_list)
             case _:
                 print("Invalid choice")
 
 
-def admin_menu(data):
+def admin_menu(user_list, user):
     while True:
         print("\n-----MENU-----")
+        print(f"Welcome, {user[1]}! It is currently {current_time()}")
         print("  1. Create account")
         print("  2. Manage accounts")
         print("  3. View logs")
@@ -46,7 +47,7 @@ def admin_menu(data):
         match choice:
             case "1":
                 print("\n-----CREATE ACCOUNT-----")
-                accounts.new_user(data)
+                accounts.new_user(user_list, admin=False)
 
             case "2":
                 print("\n-----MANAGE ACCOUNTS-----")
@@ -69,7 +70,7 @@ def admin_menu(data):
                 print("Invalid choice")
 
 
-def user_menu(user):
+def user_menu(user_list, user):
     while True:
         print("\n-----MENU-----")
         print(f"Welcome, {user[1]}! It is currently {current_time()}")
