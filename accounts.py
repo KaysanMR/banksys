@@ -111,12 +111,21 @@ def view_user(user):
     input("\nPress ENTER / RETURN to exit.")
 
 
-def manage(user_list):
+def search(data):
+    keyword = input("Enter username or user ID: ")
+    results = [item for item in data if
+               keyword in item[0] or
+               keyword in item[1]]
+    return results
+
+
+def manage(data):
+    users = search(data)
     headings = ["UID", "USERNAME"]
-    display.table(user_list, headings)
+    display.table(users, headings)
 
     select = input("Select user #: ")
-    user = user_list[int(select) - 1]
+    user = users[int(select) - 1]
     print(user)
 
 
