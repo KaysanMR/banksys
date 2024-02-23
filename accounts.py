@@ -6,7 +6,7 @@ import display
 import menu
 
 
-def new_user(data, admin=False, creator="SYSTEM"):
+def new_user(data, admin=False, session="SYSTEM"):
     username = None
     while not username:
         username = input("Enter username:")
@@ -23,7 +23,7 @@ def new_user(data, admin=False, creator="SYSTEM"):
     balance = 0
     data.append([uid, username, password, balance])
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
-    log_entry(creator[0], f"created new user {uid} admin={admin}\n")
+    log_entry(f"created new user {uid} admin={admin}", session[0])
     print("Account created")
 
 
@@ -56,6 +56,7 @@ def login(user_list, admin_list):
             case 1:
                 session_user = validate_user(admin_list, user_id)
                 if session_user:
+                    log_entry(action=f"logged in as {session_user[0]}")
                     menu.admin_menu(user_list, session_user)
                     return session_user
             case 2:

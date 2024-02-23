@@ -13,8 +13,8 @@ def log_function(function):
     return wrapper
 
 
-def log_entry(session, action):
-    log = f"{current_time(2)}: [{session}] {action}"
+def log_entry(action, session="SYSTEM"):
+    log = f"{current_time(2)}: [{session}] {action}\n"
     write(log, "log.txt")
 
 
