@@ -1,9 +1,11 @@
 from datetime import datetime
-import accounts
 
 
-def current_time():
-    return datetime.now().strftime("%H:%M:%S %Y-%m-%d")  # format time to time, date format
+def current_time(select=1):
+    format_1 = "%H:%M:%S %Y-%m-%d"
+    format_2 = "%Y-%m-%d %H:%M:%S"
+    choice = format_1 if select == 1 else format_2
+    return datetime.now().strftime(choice)  # format time to time, date format
 
 
 def greet(user=None):
@@ -25,6 +27,8 @@ def table(data, headings, cell_width=15):
 
 
 if __name__ == "__main__":
-    users = accounts.load("accounts.csv")
-    headers = ["UID", "USERNAME"]
-    table(users, headers)
+    print(current_time(2))
+    pass
+    # users = accounts.load("accounts.csv")
+    # headers = ["UID", "USERNAME"]
+    # table(users, headers)
