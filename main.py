@@ -3,8 +3,8 @@ import menu
 
 
 def main():
-    user_list = accounts.load("accounts.txt")
-    admin_list = accounts.load("admin.txt")
+    user_list = accounts.load("accounts.csv")
+    admin_list = accounts.load("admin.csv")
     menu.main_menu(user_list, admin_list)
 
 

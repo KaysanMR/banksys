@@ -25,6 +25,6 @@ def table(data, headings, cell_width=15):
 
 
 if __name__ == "__main__":
-    users = accounts.load("accounts.txt")
+    users = accounts.load("accounts.csv")
     headers = ["UID", "USERNAME"]
     table(users, headers)
