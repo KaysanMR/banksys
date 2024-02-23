@@ -13,6 +13,11 @@ def log_function(function):
     return wrapper
 
 
+def log_entry(session, action):
+    log = f"{current_time(2)}: [{session}] {action}"
+    write(log, "log.txt")
+
+
 if __name__ == "__main__":
     def hello(a=1, b=2, word="world"):
         print("Hello " + word)

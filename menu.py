@@ -40,7 +40,7 @@ def admin_menu(user_list, user):
         match choice:
             case "1":
                 print("\n-----CREATE ACCOUNT-----")
-                accounts.new_user(user_list, admin=False)
+                accounts.new_user(user_list, admin=False, creator=user)
 
             case "2":
                 print("\n-----MANAGE ACCOUNTS-----")
