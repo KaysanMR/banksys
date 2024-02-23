@@ -1,10 +1,12 @@
 import accounts
 import display
+import file_manager
+
 import transaction
 
 def main_menu(user_list, admin_list):
     while True:
-        print("\n-----MENU-----")
+        display.box("MENU", 32)
         display.greet()
         print("  1. Sign in")
         print("  2. Exit")
@@ -29,7 +31,7 @@ def main_menu(user_list, admin_list):
 
 def admin_menu(user_list, user):
     while True:
-        print("\n-----MENU-----")
+        display.box("ADMIN", 32)
         display.greet(user)
         print("  1. Create account")
         print("  2. Manage accounts")
@@ -48,7 +50,7 @@ def admin_menu(user_list, user):
 
             case "3":
                 print("\n-----LOGS-----")
-                # Display logs
+                file_manager.view("log.txt")
 
             case "4":
                 match input("\nLog out? (y/n): "):
@@ -65,7 +67,7 @@ def admin_menu(user_list, user):
 
 def user_menu(user):
     while True:
-        print("\n-----MENU-----")
+        display.box("BANKING", 32)
         display.greet(user)
         print("  1. My Account")
         print("  2. Deposit / Withdraw")

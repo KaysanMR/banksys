@@ -16,9 +16,9 @@ def greet(user=None):
 
 
 def table(data, headings, cell_width=15):
-    cell = str("{:^" + str(cell_width) + "}￨")  # create format string "{:^n}"
-    format_row = "￨{:^3}￨" + cell * (len(headings))
-    divider_line = ("---",) + (("-" * cell_width),) * len(headings)
+    cell = str("{:^" + str(cell_width) + "}│")  # create format string "{:^n}"
+    format_row = "│{:^4}│" + cell * (len(headings))
+    divider_line = ("────",) + (("─" * cell_width),) * len(headings)
     # start printing table
     print(format_row.format("#", *headings))
     print(format_row.format(*divider_line))
@@ -26,8 +26,15 @@ def table(data, headings, cell_width=15):
         print(format_row.format(index + 1, *item))
 
 
+def box(content, width):
+    text_box = str("│{:^" + str(width) + "}│")
+    print(f"┼{"─" * width}┼")
+    print(text_box.format(content))
+    print(f"┼{"─" * width}┼")
+
+
 if __name__ == "__main__":
-    print(current_time(2))
+    box("Hello World!", 32)
     pass
     # users = accounts.load("accounts.csv")
     # headers = ["UID", "USERNAME"]
