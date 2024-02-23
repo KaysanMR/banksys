@@ -20,7 +20,7 @@ def new_user(data, admin=False):
     password = username[:3] + uid[8:]
 
     data.append([uid, username, password])
-    save(data, "accounts.txt") if not admin else save(data, "admin.txt")
+    save(data, "accounts.csv") if not admin else save(data, "admin.csv")
     print("Account created")
 
 
@@ -42,7 +42,7 @@ def load(filename):
         return None
 
 
-def save(data, file="accounts.txt"):
+def save(data, file="accounts.csv"):
     with open(file, "w") as file:
         for user in data:
             file.write(",".join(user) + '\n')
@@ -130,5 +130,5 @@ def manage(data):
 
 
 if __name__ == "__main__":
-    userlist = load("accounts.txt")
+    userlist = load("accounts.csv")
     manage(userlist)
