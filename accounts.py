@@ -6,6 +6,7 @@ import display
 import menu
 
 
+@log_function
 def new_user(data, admin=False):
     username = None
     while not username:
@@ -24,6 +25,7 @@ def new_user(data, admin=False):
     data.append([uid, username, password, balance])
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
     print("Account created")
+    return [uid, username, password]
 
 
 def new_id(username, admin=False):
@@ -43,6 +45,7 @@ def check_admin(user_id):
         return 2
 
 
+@log_function
 def login(user_list, admin_list):
     while True:
         user_id = input("\nEnter your UID: ")
@@ -62,6 +65,7 @@ def login(user_list, admin_list):
                     return session_user
 
 
+@log_function
 def validate_user(data, user_id):
     try:
         user = [user for user in data if user[0] == user_id][0]  # fetch username from data
