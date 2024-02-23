@@ -1,11 +1,13 @@
-from accounts import save, load
+from file_manager import write
+from display import current_time
 
 
 def log_function(function):
+
     def wrapper(*args, **kwargs):
         result = function(*args, **kwargs)
-        log = [[f"{function.__name__} run with args {args, kwargs}, returned: {result}"]]
-        save(log, "log.csv")
+        log = f"{current_time()} {function.__name__} run with args {args, kwargs}, returned: {result}\n"
+        write(log, "log.txt")
         return result
 
     return wrapper
@@ -23,3 +25,4 @@ if __name__ == "__main__":
     # loader = (load("log.csv"))
     # print(loader)
     hello(a=15, word="Khalid")
+    hello(word="Bakyt")

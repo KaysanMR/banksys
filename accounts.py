@@ -1,4 +1,6 @@
 from datetime import datetime
+from file_manager import save, load
+from logger import log_function
 
 import display
 import menu
@@ -20,6 +22,7 @@ def new_user(data, admin=False):
     password = username[:3] + uid[8:]
 
     data.append([uid, username, password])
+
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
     print("Account created")
 
@@ -30,22 +33,6 @@ def new_id(username, admin=False):
     if admin:
         identifier = identifier + "A"
     return identifier
-
-
-def load(filename):
-    try:
-        with open(filename, "r") as file:
-            content = file.readlines()
-            data = [line.strip().split(",") for line in content]
-            return data
-    except FileNotFoundError:
-        return None
-
-
-def save(data, file="accounts.csv"):
-    with open(file, "w") as file:
-        for user in data:
-            file.write(",".join(user) + '\n')
 
 
 def check_admin(user_id):
