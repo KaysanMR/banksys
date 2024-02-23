@@ -1,13 +1,12 @@
 from datetime import datetime
 from file_manager import save, load
-from logger import log_function
+from logger import log_entry
 
 import display
 import menu
 
 
-@log_function
-def new_user(data, admin=False):
+def new_user(data, admin=False, creator="SYSTEM"):
     username = None
     while not username:
         username = input("Enter username:")
@@ -25,8 +24,8 @@ def new_user(data, admin=False):
     data.append([uid, username, password])
 
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
+    log_entry(creator[0], f"created new user {uid} admin={admin}\n")
     print("Account created")
-    return [uid, username, password]
 
 
 def new_id(username, admin=False):
@@ -46,7 +45,6 @@ def check_admin(user_id):
         return 2
 
 
-@log_function
 def login(user_list, admin_list):
     while True:
         user_id = input("\nEnter your UID: ")
@@ -66,7 +64,6 @@ def login(user_list, admin_list):
                     return session_user
 
 
-@log_function
 def validate_user(data, user_id):
     try:
         user = [user for user in data if user[0] == user_id][0]  # fetch username from data
