@@ -8,12 +8,25 @@ def load(filename):
         return None
 
 
-def save(data, file="accounts.csv"):
-    with open(file, "w") as file:
+def view(filename):
+    try:
+        with open(filename, "r") as file:
+            print(file.read())
+            input("Press ENTER to continue:")
+    except FileNotFoundError:
+        return None
+
+
+def save(data, filename="accounts.csv"):
+    with open(filename, "w") as file:
         for user in data:
             file.write(",".join(user) + '\n')
 
 
-def write(data, file):
-    with open(file, "a") as file:
+def write(data, filename):
+    with open(filename, "a") as file:
         file.write(data)
+
+
+if __name__ == "__main__":
+    view("log.txt")
