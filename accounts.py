@@ -36,18 +36,20 @@ def new_id(username, admin=False):
 
 
 def check_admin(user_id):
-    if user_id == "SUPERUSER_A":
-        return 0
-    elif user_id[-1] == "A":
-        return 1
-    else:
-        return 2
+    if user_id:
+        if user_id == "SUPERUSER_A":
+            return 0
+        elif user_id[-1] == "A":
+            return 1
+        else:
+            return 2
 
 
 def login(user_list, admin_list):
     while True:
         user_id = input("\nEnter your UID: ")
         if user_id.upper() == "X": return
+
         match check_admin(user_id):
             case 0:
                 print("SUPERUSER MENU")  # add super menu
