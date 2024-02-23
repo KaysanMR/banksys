@@ -1,10 +1,12 @@
 from datetime import datetime
+from file_manager import save, load
+from logger import log_entry
 
 import display
 import menu
 
 
-def new_user(data, admin=False):
+def new_user(data, admin=False, session="SYSTEM"):
     username = None
     while not username:
         username = input("Enter username:")
@@ -20,7 +22,9 @@ def new_user(data, admin=False):
     password = username[:3] + uid[8:]
 
     data.append([uid, username, password])
-    save(data, "accounts.txt") if not admin else save(data, "admin.txt")
+
+    save(data, "accounts.csv") if not admin else save(data, "admin.csv")
+    log_entry(f"created new user {uid} admin={admin}", session[0])
     print("Account created")
 
 
@@ -32,41 +36,28 @@ def new_id(username, admin=False):
     return identifier
 
 
-def load(filename):
-    try:
-        with open(filename, "r") as file:
-            content = file.readlines()
-            data = [line.strip().split(",") for line in content]
-            return data
-    except FileNotFoundError:
-        return None
-
-
-def save(data, file="accounts.txt"):
-    with open(file, "w") as file:
-        for user in data:
-            file.write(",".join(user) + '\n')
-
-
 def check_admin(user_id):
-    if user_id == "SUPERUSER_A":
-        return 0
-    elif user_id[-1] == "A":
-        return 1
-    else:
-        return 2
+    if user_id:
+        if user_id == "SUPERUSER_A":
+            return 0
+        elif user_id[-1] == "A":
+            return 1
+        else:
+            return 2
 
 
 def login(user_list, admin_list):
     while True:
         user_id = input("\nEnter your UID: ")
         if user_id.upper() == "X": return
+
         match check_admin(user_id):
             case 0:
                 print("SUPERUSER MENU")  # add super menu
             case 1:
                 session_user = validate_user(admin_list, user_id)
                 if session_user:
+                    log_entry(action=f"logged in as {session_user[0]}")
                     menu.admin_menu(user_list, session_user)
                     return session_user
             case 2:
@@ -130,5 +121,5 @@ def manage(data):
 
 
 if __name__ == "__main__":
-    userlist = load("accounts.txt")
+    userlist = load("accounts.csv")
     manage(userlist)
