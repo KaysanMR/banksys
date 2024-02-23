@@ -18,8 +18,8 @@ def new_user(data, admin=False):
 
     uid = new_id(username, admin)
     password = username[:3] + uid[8:]
-
-    data.append([uid, username, password])
+    balance = 0
+    data.append([uid, username, password, balance])
     save(data, "accounts.txt") if not admin else save(data, "admin.txt")
     print("Account created")
 
@@ -37,6 +37,9 @@ def load(filename):
         with open(filename, "r") as file:
             content = file.readlines()
             data = [line.strip().split(",") for line in content]
+            for user in data:
+                if len(user) < 4:
+                    user.append(0)
             return data
     except FileNotFoundError:
         return None

@@ -1,6 +1,6 @@
 import accounts
 import display
-
+import transaction
 
 def main_menu(user_list, admin_list):
     while True:
@@ -80,11 +80,18 @@ def user_menu(user):
 
             case "2":
                 print("\n-----DEPOSIT/WITHDRAW-----")
-                # Deposit/Withdraw
+                action = input("Deposit or Withdraw? (d/w): ")
+                amount = float(input("Enter amount: "))
+                if action.lower() == 'd':
+                    transaction.deposit(user, amount)
+                elif action.lower() == 'w':
+                    transaction.withdraw(user, amount)
+                else:
+                    print("Invalid choice")
 
             case "3":
                 print("\n-----TRANSACTION HISTORY-----")
-                # Display logs for user (in date range)
+                transaction.generate_statement(user)
 
             case "4":
                 match input("\nLog out? (y/n): "):
