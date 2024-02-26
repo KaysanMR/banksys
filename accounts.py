@@ -18,20 +18,37 @@ def new_user(data, admin=False, session="SYSTEM"):
             except IndexError:
                 continue
 
-    uid = new_id(username, admin)
+    if not admin:
+        match input("Select account type:\n"
+                    "S -> Savings\n"
+                    "C -> Current\n"
+                    "Enter selection: ").upper():
+            case "S":
+                uid = new_id(username, admin, "saving")
+                balance = -100.00
+            case "C":
+                uid = new_id(username, admin, "current")
+                balance = -500.00
+    else:
+        uid = new_id(username, admin)
+        balance = 0
+
     password = username[:3] + uid[8:]
-    balance = 0
     data.append([uid, username, password, balance])
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
     log_entry(f"created new user {uid} admin={admin}", session[0])
     print("Account created")
 
 
-def new_id(username, admin=False):
+def new_id(username, admin=False, account_type="saving"):
     timestamp = round(datetime.timestamp(datetime.now()))
     identifier = username[:3].upper() + str(timestamp)
     if admin:
         identifier = identifier + "A"
+    if account_type == "saving":
+        identifier = identifier + "S"
+    if account_type == "current":
+        identifier = identifier + "C"
     return identifier
 
 
