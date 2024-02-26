@@ -62,7 +62,7 @@ def login(user_list, admin_list):
             case 2:
                 session_user = validate_user(user_list, user_id)
                 if session_user:
-                    menu.user_menu(session_user)
+                    menu.user_menu(session_user, user_list)
                     return session_user
 
 

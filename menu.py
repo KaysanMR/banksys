@@ -1,8 +1,8 @@
 import accounts
 import display
 import file_manager
-
 import transaction
+
 
 def main_menu(user_list, admin_list):
     while True:
@@ -65,7 +65,7 @@ def admin_menu(user_list, user):
                 print("Invalid choice")
 
 
-def user_menu(user):
+def user_menu(user, user_list):
     while True:
         display.box("BANKING", 32)
         display.greet(user)
@@ -90,6 +90,7 @@ def user_menu(user):
                     transaction.withdraw(user, amount)
                 else:
                     print("Invalid choice")
+                file_manager.save(user_list)
 
             case "3":
                 print("\n-----TRANSACTION HISTORY-----")
