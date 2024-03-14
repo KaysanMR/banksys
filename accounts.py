@@ -136,6 +136,18 @@ def manage(data):
     # edit function here
 
 
+def account_type(identifier):
+    match identifier[-1]:
+        case "S":
+            return "savings"
+        case "C":
+            return "current"
+        case "A":
+            return "admin"
+        case _:
+            return None
+
+
 if __name__ == "__main__":
     userlist = load("accounts.csv")
     manage(userlist)
