@@ -35,7 +35,7 @@ def box(content, width):
 
 if __name__ == "__main__":
     box("Hello World!", 32)
-    pass
+    # pass
     # users = accounts.load("accounts.csv")
     # headers = ["UID", "USERNAME"]
     # table(users, headers)

@@ -25,10 +25,10 @@ def new_user(data, admin=False, session="SYSTEM"):
                     "Enter selection: ").upper():
             case "S":
                 uid = new_id(username, admin, "saving")
-                balance = -100.00
+                # balance = -100.00
             case "C":
                 uid = new_id(username, admin, "current")
-                balance = -500.00
+                # balance = -500.00
     else:
         uid = new_id(username, admin)
         balance = 0
