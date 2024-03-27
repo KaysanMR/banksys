@@ -110,7 +110,7 @@ def view_user(user, pause=True):
     print(f"Email:       {user[4]}")
     print(f"Phone:       {user[5]}")
     print(f"Occupation:  {user[6]}")
-    print(f"Address:     {user[7]}\n")
+    print(f"Address:     {user[7]}")
     if pause:
         input("\nPress ENTER / RETURN to exit.")
 
@@ -169,7 +169,7 @@ def add_info(user, data):
 
 def edit_account(user):
     while True:
-        print("1. Email")
+        print("\n1. Email")
         print("2. Phone")
         print("3. Address")
         print("4. Employment")
@@ -188,6 +188,8 @@ def edit_account(user):
                 case "4":
                     edit_attribute(user, 3)
                     break
+                case x if x.upper() == "X":
+                    return
                 case _:
                     print("Invalid input, please choose a number (1-4).")
 
@@ -204,7 +206,7 @@ def edit_attribute(user, select):
                 user[index] = new_property
                 break
             elif confirm.upper() == "N":
-                continue
+                return
             else:
                 print("Invalid choice. Please enter (y/n).")
 
