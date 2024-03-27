@@ -105,8 +105,13 @@ def validate_user(data, user_id):
 
 
 def view_user(user):
-    print(f"ID:       {user[0]}\n"
-          f"Username: {user[1]}")
+    print(f"ID:          {user[0]}")
+    print(f"Username:    {user[1]}")
+    print(f"Email:       {user[4]}")
+    print(f"Phone:       {user[5]}")
+    print(f"Address:     {user[6]}")
+    print(f"Occupation:  {user[7]}")
+    print(f"Workplace:   {user[8] if user[8] else "N/A"}")
     input("\nPress ENTER / RETURN to exit.")
 
 
@@ -160,6 +165,11 @@ def add_info(user, data):
     save(data, "accounts.csv")
 
     print("User details updated.")
+
+
+def edit_account():
+    select = input("Select an attribute to edit: ")
+    pass
 
 
 def account_type(identifier):
