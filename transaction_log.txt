@@ -1,0 +1,6 @@
+2024-03-27 14:00:20, Transaction Type: Transfer, From: Bakyt, To: Houd, Amount: 1000.0
+2024-03-27 14:13:21, Transaction Type: Transfer, From: Bakyt, To: Houd, Amount: 10000.0
+2024-03-27 14:15:22, Transaction Type: Deposit, From: Bakyt, To: N/A, Amount: 1000.0
+2024-03-27 14:28:31: [SYSTEM] Transaction: Transfer, from: BAK1708434037S, amount: 1000.0
+2024-03-27 14:30:52: [SYSTEM] Transaction: Transfer, from: BAK1708434037S to: HOU1708434041S, amount: 1000.0
+2024-03-27 14:31:11: [SYSTEM] Transaction: Deposit, user: BAK1708434037S, amount: 1000.0

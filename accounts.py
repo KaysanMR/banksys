@@ -85,18 +85,21 @@ def login(user_list, admin_list):
 
 def validate_user(data, user_id):
     try:
-        user = [user for user in data if user[0] == user_id][0]  # fetch username from data
+        user = [user for user in data if user[0] == user_id][0]
         password = input("Enter your password: ")
         if password == user[2]:
             print("Logged in successfully.")
+            log_entry(f"User {user_id} logged in successfully.")
             return user
         else:
             print("Incorrect password, please try again.")
+            log_entry(f"User {user_id} attempted to login with incorrect password.")
 
     except IndexError:
-        print("UID does not match any known user. "
-              "\nEnter <X> to exit.")
+        print("UID does not match any known user. \nEnter <X> to exit.")
+        log_entry(f"Login attempt with unknown UID: {user_id}")
         return None
+
 
 
 def view_user(user):

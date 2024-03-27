@@ -22,3 +22,7 @@
 2024-03-25 15:35:08: [SYSTEM] logged in as A
 2024-03-25 15:35:35: [A] created new user MAI1711352135C admin=False
 2024-03-25 16:33:03: [SYSTEM] logged in as A
+2024-03-27 14:13:06: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:15:15: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:28:17: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:30:29: [SYSTEM] User BAK1708434037S logged in successfully.
