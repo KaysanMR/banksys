@@ -8,6 +8,8 @@ import menu
 
 def new_user(data, admin=False, session="SYSTEM"):
     username = None
+    balance = 0
+
     while not username:
         username = input("Enter username:")
         for user in data:
@@ -31,23 +33,26 @@ def new_user(data, admin=False, session="SYSTEM"):
                 # balance = -500.00
     else:
         uid = new_id(username, admin)
-        balance = 0
 
     password = username[:3] + uid[8:]
-    data.append([uid, username, password, balance])
+    user = [uid, username, password, balance]
+    data.append(user)
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
+
+    add_info(user, data)
+
     log_entry(f"created new user {uid} admin={admin}", session[0])
     print("Account created")
 
 
-def new_id(username, admin=False, account_type="saving"):
+def new_id(username, admin=False, acct_type="saving"):
     timestamp = round(datetime.timestamp(datetime.now()))
     identifier = username[:3].upper() + str(timestamp)
     if admin:
         identifier = identifier + "A"
-    if account_type == "saving":
+    if acct_type == "saving":
         identifier = identifier + "S"
-    if account_type == "current":
+    if acct_type == "current":
         identifier = identifier + "C"
     return identifier
 
