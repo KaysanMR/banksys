@@ -25,3 +25,19 @@ def withdraw(user, amount):
 
 def generate_statement(user):
     print(f"Bank Statement for {user[1]}: \nBalance: {user[3]}")
+
+def transfer_funds(from_user, to_user, amount, user_list):
+    from_user_balance = float(from_user[3])
+
+    if from_user not in user_list or to_user not in user_list:
+        print("One or more accounts not found.")
+        return False
+
+    if from_user_balance < amount:
+        print("Insufficient funds in the source account.")
+        return False
+
+    from_user[3] = str(from_user_balance - amount)
+    to_user[3] = str(float(to_user[3]) + amount)
+    print(f"Transferred {amount} from {from_user[1]} to {to_user[1]}.")
+    return True
