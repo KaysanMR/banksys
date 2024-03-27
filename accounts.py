@@ -167,9 +167,36 @@ def add_info(user, data):
     print("User details updated.")
 
 
-def edit_account():
-    select = input("Select an attribute to edit: ")
-    pass
+def edit_account(user):
+    print("1. Email")
+    print("2. Phone")
+    print("3. Address")
+    print("4. Employment")
+    print("X. Exit")
+    while True:
+        match input("Select an attribute (1-4) to edit: "):
+            case "1":
+                print(f"Current email: {user[4]}")
+                new_mail = input("Enter new email: ")
+                if new_mail:
+                    while True:
+                        confirm = input(f"Change email to {new_mail}?")
+                        if confirm.upper() == "Y":
+                            user[4] = new_mail
+                            break
+                        elif confirm.upper() == "N":
+                            continue
+                        else:
+                            print("Invalid choice. Please enter (y/n).")
+                break
+            case "1":
+                break
+            case "3":
+                break
+            case "4":
+                break
+            case _:
+                print("Invalid input, please choose a number (1-4).")
 
 
 def account_type(identifier):
