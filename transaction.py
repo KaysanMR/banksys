@@ -30,7 +30,7 @@ def generate_statement(user):
     print(f"Bank Statement for {user[1]}: \nBalance: {user[3]}")
 
 
-from logger import log_transaction
+
 
 
 def transfer_funds(from_user, to_user, amount, user_list):

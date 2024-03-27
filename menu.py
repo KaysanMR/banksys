@@ -3,6 +3,7 @@ import display
 import file_manager
 import transaction
 from transaction import transfer_funds
+from logger import filter_transaction_log, log_transaction
 
 def main_menu(user_list, admin_list):
     while True:
@@ -64,6 +65,8 @@ def admin_menu(user_list, user):
             case _:
                 print("Invalid choice")
 
+# ... other imports ...
+
 def perform_transfer(user, user_list):
     recipient_id = input("Enter the recipient's account ID: ")
     recipient = next((u for u in user_list if u[0] == recipient_id), None)
@@ -76,14 +79,15 @@ def perform_transfer(user, user_list):
         try:
             amount = float(input("Enter the amount to transfer: "))
             if amount <= 0:
-                print("Please enter a positive amount.")
-                continue
+                raise ValueError("Amount must be positive.")
             break
-        except ValueError:
-            print("Invalid amount. Please enter a numeric value.")
+        except ValueError as e:
+            print("Invalid amount. Please enter a numeric value. Error: ", e)
 
     transfer_funds(user, recipient, amount, user_list)
     file_manager.save(user_list)
+
+
 
 
 def user_menu(user, user_list):
@@ -94,7 +98,8 @@ def user_menu(user, user_list):
         print("  2. Deposit / Withdraw")
         print("  3. Bank Statement")
         print("  4. Transfer Funds")
-        print("  5. Exit")
+        print("  5. Filter Transaction Log")
+        print("  6. Exit")
         choice = input("Enter your choice: ")
 
         match choice:
@@ -118,7 +123,7 @@ def user_menu(user, user_list):
                 print("\n-----TRANSACTION HISTORY-----")
                 transaction.generate_statement(user)
 
-            case "5":
+            case "6":
                 match input("\nLog out? (y/n): "):
                     case "y":
                         break
@@ -128,8 +133,59 @@ def user_menu(user, user_list):
                         print("Invalid choice")
             case "4":
                 perform_transfer(user, user_list)
+            case "5":
+                filter_transaction_log_menu()
 
             case _:
                 print("Invalid choice")
 
 # if __name__ == "__main__":
+def filter_transaction_menu():
+    print("Filter Transaction Log Menu:")
+    print("1. Filter by Date")
+    print("2. Filter by Transaction Type")
+    print("3. Filter by Sender")
+    print("4. Filter by Receiver")
+    print("5. Return to Previous Menu")
+    choice = input("Enter your choice: ")
+    return choice
+
+def filter_transaction_log_menu():
+    while True:
+        choice = filter_transaction_menu()
+        if choice == "1":
+            date = input("Enter date (YYYY-MM-DD): ")
+            transaction_log = log_transaction()
+            filtered_log = filter_transaction_log({"date": date}, transaction_log)
+            print_filtered_log(filtered_log)
+        elif choice == "2":
+            transaction_type = input("Enter transaction type: ")
+            transaction_log = log_transaction()
+            filtered_log = filter_transaction_log({"transaction_type": transaction_type}, transaction_log)
+            print_filtered_log(filtered_log)
+        elif choice == "3":
+            sender = input("Enter sender username: ")
+            transaction_log = log_transaction()
+            filtered_log = filter_transaction_log({"from_user": sender}, transaction_log)
+            print_filtered_log(filtered_log)
+        elif choice == "4":
+            receiver = input("Enter receiver username: ")
+            transaction_log = log_transaction()
+            filtered_log = filter_transaction_log({"to_user": receiver}, transaction_log)
+            print_filtered_log(filtered_log)
+        elif choice == "5":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+
+
+
+def print_filtered_log(filtered_log):
+    if filtered_log:
+        print("Filtered Transaction Log:")
+        for entry in filtered_log:
+            print(entry)
+    else:
+        print("No transactions found for the specified criteria.")
