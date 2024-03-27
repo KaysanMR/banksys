@@ -19,22 +19,28 @@ def filter_transaction_log(filter_criteria, transaction_log_entries):
     filtered_log = []
 
     for entry in transaction_log_entries:
-        timestamp, details = entry.split(": ", 1)
-        details_parts = details.split(", ")
-        transaction_type = details_parts[0].split(": ")[1]
-        from_user = details_parts[1].split(": ")[1]
-        to_user = details_parts[2].split(": ")[1]
-        amount = float(details_parts[3].split(": ")[1])
+        try:
+            timestamp, details = entry.split(": ", 1)
+            details_parts = details.split(", ")
+            transaction_type = details_parts[0].split(": ")[1]
 
-        if (filter_criteria.get("date") and filter_criteria["date"] not in timestamp) or \
-           (filter_criteria.get("transaction_type") and transaction_type != filter_criteria["transaction_type"]) or \
-           (filter_criteria.get("from_user") and from_user != filter_criteria["from_user"]) or \
-           (filter_criteria.get("to_user") and to_user != filter_criteria["to_user"]):
-            continue
+            # Adjust the parsing according to your log format
+            from_user = details_parts[1].split(": ")[1] if len(details_parts) > 1 else None
+            to_user = details_parts[2].split(": ")[1] if len(details_parts) > 2 else None
+            amount = float(details_parts[3].split(": ")[1]) if len(details_parts) > 3 else None
 
-        filtered_log.append(entry)
+            if (filter_criteria.get("date") and filter_criteria["date"] not in timestamp) or \
+               (filter_criteria.get("transaction_type") and transaction_type != filter_criteria["transaction_type"]) or \
+               (filter_criteria.get("from_user") and from_user and from_user != filter_criteria["from_user"]) or \
+               (filter_criteria.get("to_user") and to_user and to_user != filter_criteria["to_user"]):
+                continue
+
+            filtered_log.append(entry)
+        except IndexError:
+            print(f"Skipping malformed log entry: {entry}")
 
     return filtered_log
+
 
 def get_transaction_log():
     with open("transaction_log.txt", "r") as file:

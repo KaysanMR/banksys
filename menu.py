@@ -4,7 +4,7 @@ import file_manager
 import transaction
 from transaction import transfer_funds
 from logger import filter_transaction_log, log_transaction
-
+from logger import get_transaction_log
 def main_menu(user_list, admin_list):
     while True:
         display.box("MENU", 32)
@@ -155,22 +155,22 @@ def filter_transaction_log_menu():
         choice = filter_transaction_menu()
         if choice == "1":
             date = input("Enter date (YYYY-MM-DD): ")
-            transaction_log = log_transaction()
+            transaction_log = get_transaction_log()
             filtered_log = filter_transaction_log({"date": date}, transaction_log)
             print_filtered_log(filtered_log)
         elif choice == "2":
             transaction_type = input("Enter transaction type: ")
-            transaction_log = log_transaction()
+            transaction_log = get_transaction_log()
             filtered_log = filter_transaction_log({"transaction_type": transaction_type}, transaction_log)
             print_filtered_log(filtered_log)
         elif choice == "3":
             sender = input("Enter sender username: ")
-            transaction_log = log_transaction()
+            transaction_log = get_transaction_log()
             filtered_log = filter_transaction_log({"from_user": sender}, transaction_log)
             print_filtered_log(filtered_log)
         elif choice == "4":
             receiver = input("Enter receiver username: ")
-            transaction_log = log_transaction()
+            transaction_log = get_transaction_log()
             filtered_log = filter_transaction_log({"to_user": receiver}, transaction_log)
             print_filtered_log(filtered_log)
         elif choice == "5":
