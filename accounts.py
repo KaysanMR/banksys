@@ -110,7 +110,7 @@ def view_user(user, pause=True):
     print(f"Email:       {user[4]}")
     print(f"Phone:       {user[5]}")
     print(f"Occupation:  {user[6]}")
-    print(f"Address:     {user[7]}")
+    print(f"Address:     {user[7]}\n")
     if pause:
         input("\nPress ENTER / RETURN to exit.")
 
@@ -173,7 +173,7 @@ def edit_account(user):
         print("2. Phone")
         print("3. Address")
         print("4. Employment")
-        print("X. Exit")
+        print("X. Exit\n")
         while True:
             match input("Select an attribute (1-4) to edit: "):
                 case "1":
@@ -190,14 +190,6 @@ def edit_account(user):
                     break
                 case _:
                     print("Invalid input, please choose a number (1-4).")
-        while True:
-            repeat = input("Continue editing info? (y/n): ")
-            if repeat.upper() == "N":
-                break
-            elif repeat.upper() == "Y":
-                continue
-            else:
-                print("Invalid choice. Please enter (y/n).")
 
 
 def edit_attribute(user, select):

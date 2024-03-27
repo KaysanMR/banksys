@@ -24,6 +24,7 @@ def table(data, headings, cell_width=15):
     print(format_row.format(*divider_line))
     for index, item in enumerate(data):
         print(format_row.format(index + 1, *item))
+    print("\n")
 
 
 def box(content, width):
@@ -33,8 +34,22 @@ def box(content, width):
     print(f"┼{"─" * width}┼")
 
 
+def confirm_exit():
+    while True:
+        confirm = input("Are you sure you want to exit? (y/n): ")
+        if confirm.upper() == "Y":
+            return True
+        elif confirm.upper() == "N":
+            return False
+        else:
+            print("Invalid input, please try again.")
+
+
 if __name__ == "__main__":
-    box("Hello World!", 32)
+    if confirm_exit():
+        print("foo")
+    else:
+        print("bar")
     # pass
     # users = accounts.load("accounts.csv")
     # headers = ["UID", "USERNAME"]
