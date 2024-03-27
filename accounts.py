@@ -104,15 +104,15 @@ def validate_user(data, user_id):
         return None
 
 
-def view_user(user):
+def view_user(user, pause=True):
     print(f"ID:          {user[0]}")
     print(f"Username:    {user[1]}")
     print(f"Email:       {user[4]}")
     print(f"Phone:       {user[5]}")
-    print(f"Address:     {user[6]}")
-    print(f"Occupation:  {user[7]}")
-    print(f"Workplace:   {user[8] if user[8] else "N/A"}")
-    input("\nPress ENTER / RETURN to exit.")
+    print(f"Occupation:  {user[6]}")
+    print(f"Address:     {user[7]}")
+    if pause:
+        input("\nPress ENTER / RETURN to exit.")
 
 
 def search(data):
@@ -136,14 +136,18 @@ def manage(data):
     display.table(users, headings)
     # select user to edit
     while True:
-        select = input("Select user #: ")
+        if len(users) == 1:
+            select = 1
+        else:
+            select = input("Select user #: ")
         if int(select) - 1 in range(len(users)):
             user = users[int(select) - 1]
-            print(user)
+            view_user(user, pause=False)
             break
         else:
             print(f"Please select an item in range 1-{len(users) + 1}")
-    # edit function here
+    edit_account(user)
+    save(data)
 
 
 def add_info(user, data):
@@ -151,52 +155,66 @@ def add_info(user, data):
 
     email = input("Enter email: ")
     phone = input("Enter phone: ")
-    address = input("Enter home address: ")
+    address = str(input("Enter home address: "))
 
     employment = None
-    while employment not in ["working", "student", "none"]:
-        employment = input("Select employment status (working/student/none): ").lower()
+    while employment not in ["working", "student", "unemployed"]:
+        employment = input("Select employment status (working/student/unemployed): ").lower()
 
-    workplace = ''
-    if employment == "working":
-        workplace = input("Enter place of employment: ")
-
-    user.extend([email, phone, address, employment, workplace])
+    user.extend([email, phone, employment, address])
     save(data, "accounts.csv")
 
     print("User details updated.")
 
 
 def edit_account(user):
-    print("1. Email")
-    print("2. Phone")
-    print("3. Address")
-    print("4. Employment")
-    print("X. Exit")
     while True:
-        match input("Select an attribute (1-4) to edit: "):
-            case "1":
-                print(f"Current email: {user[4]}")
-                new_mail = input("Enter new email: ")
-                if new_mail:
-                    while True:
-                        confirm = input(f"Change email to {new_mail}?")
-                        if confirm.upper() == "Y":
-                            user[4] = new_mail
-                            break
-                        elif confirm.upper() == "N":
-                            continue
-                        else:
-                            print("Invalid choice. Please enter (y/n).")
+        print("1. Email")
+        print("2. Phone")
+        print("3. Address")
+        print("4. Employment")
+        print("X. Exit")
+        while True:
+            match input("Select an attribute (1-4) to edit: "):
+                case "1":
+                    edit_attribute(user, 0)
+                    break
+                case "2":
+                    edit_attribute(user, 1)
+                    break
+                case "3":
+                    edit_attribute(user, 2)
+                    break
+                case "4":
+                    edit_attribute(user, 3)
+                    break
+                case _:
+                    print("Invalid input, please choose a number (1-4).")
+        while True:
+            repeat = input("Continue editing info? (y/n): ")
+            if repeat.upper() == "N":
                 break
-            case "1":
+            elif repeat.upper() == "Y":
+                continue
+            else:
+                print("Invalid choice. Please enter (y/n).")
+
+
+def edit_attribute(user, select):
+    index = select + 4
+    properties = ["email", "phone", "employment status", "address"]
+    print(f"Current {properties[select]}: {user[index]}")
+    new_property = input(f"Enter new {properties[select]}: ")
+    if new_property:
+        while True:
+            confirm = input(f"Change {properties[select]} to {new_property}? (y/n): ")
+            if confirm.upper() == "Y":
+                user[index] = new_property
                 break
-            case "3":
-                break
-            case "4":
-                break
-            case _:
-                print("Invalid input, please choose a number (1-4).")
+            elif confirm.upper() == "N":
+                continue
+            else:
+                print("Invalid choice. Please enter (y/n).")
 
 
 def account_type(identifier):
