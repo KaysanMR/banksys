@@ -2,7 +2,7 @@ import accounts
 import display
 import file_manager
 import transaction
-
+from transaction import transfer_funds
 
 def main_menu(user_list, admin_list):
     while True:
@@ -64,6 +64,27 @@ def admin_menu(user_list, user):
             case _:
                 print("Invalid choice")
 
+def perform_transfer(user, user_list):
+    recipient_id = input("Enter the recipient's account ID: ")
+    recipient = next((u for u in user_list if u[0] == recipient_id), None)
+
+    if recipient is None:
+        print("Recipient not found.")
+        return
+
+    while True:
+        try:
+            amount = float(input("Enter the amount to transfer: "))
+            if amount <= 0:
+                print("Please enter a positive amount.")
+                continue
+            break
+        except ValueError:
+            print("Invalid amount. Please enter a numeric value.")
+
+    transfer_funds(user, recipient, amount, user_list)
+    file_manager.save(user_list)
+
 
 def user_menu(user, user_list):
     while True:
@@ -72,7 +93,8 @@ def user_menu(user, user_list):
         print("  1. My Account")
         print("  2. Deposit / Withdraw")
         print("  3. Bank Statement")
-        print("  4. Exit")
+        print("  4. Transfer Funds")
+        print("  5. Exit")
         choice = input("Enter your choice: ")
 
         match choice:
@@ -96,7 +118,7 @@ def user_menu(user, user_list):
                 print("\n-----TRANSACTION HISTORY-----")
                 transaction.generate_statement(user)
 
-            case "4":
+            case "5":
                 match input("\nLog out? (y/n): "):
                     case "y":
                         break
@@ -104,6 +126,8 @@ def user_menu(user, user_list):
                         continue
                     case _:
                         print("Invalid choice")
+            case "4":
+                perform_transfer(user, user_list)
 
             case _:
                 print("Invalid choice")
