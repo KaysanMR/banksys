@@ -4,5 +4,3 @@
 2024-03-27 14:28:31: [SYSTEM] Transaction: Transfer, from: BAK1708434037S, amount: 1000.0
 2024-03-27 14:30:52: [SYSTEM] Transaction: Transfer, from: BAK1708434037S to: HOU1708434041S, amount: 1000.0
 2024-03-27 14:31:11: [SYSTEM] Transaction: Deposit, user: BAK1708434037S, amount: 1000.0
-2024-03-27 14:44:43: [SYSTEM] Transaction: Transfer, from: BAK1708434037S to: HOU1708434041S, amount: 1000.0
-2024-03-29 14:27:28: [SYSTEM] Transaction: Transfer, from: Bakyt to: Houd, amount: 1000.0
