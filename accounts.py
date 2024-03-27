@@ -136,6 +136,27 @@ def manage(data):
     # edit function here
 
 
+def add_info(user, data):
+    print("Updating details for user:", user[1])
+
+    email = input("Enter email: ")
+    phone = input("Enter phone: ")
+    address = input("Enter home address: ")
+
+    employment = None
+    while employment not in ["working", "student", "none"]:
+        employment = input("Select employment status (working/student/none): ").lower()
+
+    workplace = ''
+    if employment == "working":
+        workplace = input("Enter place of employment: ")
+
+    user.extend([email, phone, address, employment, workplace])
+    save(data, "accounts.csv")
+
+    print("User details updated.")
+
+
 def account_type(identifier):
     match identifier[-1]:
         case "S":
