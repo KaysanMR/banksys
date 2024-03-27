@@ -1,4 +1,6 @@
 from datetime import datetime
+
+import logger
 from file_manager import save, load
 from logger import log_entry
 
@@ -129,7 +131,7 @@ def search(data):
     return results
 
 
-def manage(data):
+def manage(data, session):
     # search & display results
     users = search(data)
     headings = ["UID", "USERNAME"]
@@ -146,7 +148,7 @@ def manage(data):
             break
         else:
             print(f"Please select an item in range 1-{len(users) + 1}")
-    edit_account(user)
+    edit_account(user, session)
     save(data)
 
 
@@ -154,7 +156,7 @@ def add_info(user, data):
     print("Updating details for user:", user[1])
 
     email = input("Enter email: ")
-    phone = input("Enter phone: ")
+    phone = input("Enter phone number: ")
     address = str(input("Enter home address: "))
 
     employment = None
@@ -167,26 +169,26 @@ def add_info(user, data):
     print("User details updated.")
 
 
-def edit_account(user):
+def edit_account(user, session):
     while True:
         print("\n1. Email")
-        print("2. Phone")
-        print("3. Address")
-        print("4. Employment")
+        print("2. Phone number")
+        print("3. Employment Status")
+        print("4. Address")
         print("X. Exit\n")
         while True:
             match input("Select an attribute (1-4) to edit: "):
                 case "1":
-                    edit_attribute(user, 0)
+                    edit_attribute(user, 0, session)
                     break
                 case "2":
-                    edit_attribute(user, 1)
+                    edit_attribute(user, 1, session)
                     break
                 case "3":
-                    edit_attribute(user, 2)
+                    edit_attribute(user, 2, session)
                     break
                 case "4":
-                    edit_attribute(user, 3)
+                    edit_attribute(user, 3, session)
                     break
                 case x if x.upper() == "X":
                     return
@@ -194,9 +196,9 @@ def edit_account(user):
                     print("Invalid input, please choose a number (1-4).")
 
 
-def edit_attribute(user, select):
+def edit_attribute(user, select, session):
     index = select + 4
-    properties = ["email", "phone", "employment status", "address"]
+    properties = ["email", "phone number", "employment status", "address"]
     print(f"Current {properties[select]}: {user[index]}")
     new_property = input(f"Enter new {properties[select]}: ")
     if new_property:
@@ -204,6 +206,8 @@ def edit_attribute(user, select):
             confirm = input(f"Change {properties[select]} to {new_property}? (y/n): ")
             if confirm.upper() == "Y":
                 user[index] = new_property
+                logger.log_entry(f"updated {user[0]}'s {properties[select]} to {new_property}", session)
+                print(f"updated {properties[select]} to {new_property}.")
                 break
             elif confirm.upper() == "N":
                 return
@@ -225,4 +229,4 @@ def account_type(identifier):
 
 if __name__ == "__main__":
     userlist = load("accounts.csv")
-    manage(userlist)
+    manage(userlist, session="Admin")

@@ -46,7 +46,7 @@ def admin_menu(user_list, user):
 
             case "2":
                 print("\n-----MANAGE ACCOUNTS-----")
-                accounts.manage(user_list)
+                accounts.manage(user_list, session=user[1])
 
             case "3":
                 print("\n-----LOGS-----")

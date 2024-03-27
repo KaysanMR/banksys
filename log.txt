@@ -43,3 +43,7 @@
 2024-03-27 14:48:25: [SYSTEM] logged in as A
 2024-03-27 14:51:18: [SYSTEM] logged in as A
 2024-03-27 14:52:08: [SYSTEM] logged in as A
+2024-03-27 15:18:56: [SYSTEM] updated KAY1711520947C's phone to 01116357351
+2024-03-27 15:22:58: [SYSTEM] updated KAY1711520947C's phone to 01116357351
+2024-03-27 15:23:40: [SYSTEM] updated KAY1711520947C's address to Parkhill Residences
+2024-03-27 15:24:12: [Admin] updated KAY1711520947C's employment status to employed
