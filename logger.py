@@ -9,10 +9,11 @@ def log_entry(action, session="SYSTEM", file="log.txt"):
 
 def log_transaction(from_user, to_user=None, amount=0, transaction_type=None):
     if transaction_type == "Transfer":
-        log_entry(f"Transaction: {transaction_type}, from: {from_user[1]} to: {to_user[1]}, amount: {amount}", file="transaction_log.txt")
+        log_entry(f"Transaction: {transaction_type}, from: {from_user[1]} to: {to_user[1]}, amount: {amount}",
+                  file="transaction_log.txt")
     else:
-        log_entry(f"Transaction: {transaction_type}, user: {from_user[1]}, amount: {amount}", file="transaction_log.txt")
-
+        log_entry(f"Transaction: {transaction_type}, user: {from_user[1]}, amount: {amount}",
+                  file="transaction_log.txt")
 
 
 def filter_transaction_log(filter_criteria, transaction_log_entries):
