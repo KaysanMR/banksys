@@ -1,5 +1,6 @@
 from logger import log_transaction
 
+
 def deposit(user, amount):
     balance = float(user[3])
     balance += amount
