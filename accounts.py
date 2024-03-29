@@ -8,6 +8,8 @@ import menu
 
 def new_user(data, admin=False, session="SYSTEM"):
     username = None
+    balance = 0
+
     while not username:
         username = input("Enter username:")
         for user in data:
