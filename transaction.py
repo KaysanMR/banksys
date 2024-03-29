@@ -52,3 +52,23 @@ def transfer_funds(from_user, to_user, amount, user_list):
 
     print(f"Transferred {amount} from {from_user[1]} to {to_user[1]}.")
     return True
+
+
+def perform_transfer(user, user_list):
+    recipient_id = input("Enter the recipient's account ID: ")
+    recipient = next((u for u in user_list if u[0] == recipient_id), None)
+
+    if recipient is None:
+        print("Recipient not found.")
+        return
+
+    while True:
+        try:
+            amount = float(input("Enter the amount to transfer: "))
+            if amount <= 0:
+                raise ValueError("Amount must be positive.")
+            break
+        except ValueError as e:
+            print("Invalid amount. Please enter a numeric value. Error: ", e)
+
+    transfer_funds(user, recipient, amount, user_list)
