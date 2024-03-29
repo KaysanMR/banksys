@@ -108,7 +108,6 @@ def validate_user(data, user_id):
         return None
 
 
-
 def view_user(user, pause=True):
     print(f"ID:          {user[0]}")
     print(f"Username:    {user[1]}")
