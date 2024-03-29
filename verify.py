@@ -63,6 +63,10 @@ def verify_email(email):
         return email
 
 
+def verify_phone(phone):
+    pass
+
+
 def main():
     while True:
         email_address = input("Enter email address to validate: ")
