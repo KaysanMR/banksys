@@ -134,7 +134,8 @@ def user_menu(user, user_list):
             case "4":
                 perform_transfer(user, user_list)
             case "5":
-                filter_transaction_log_menu()
+                transaction_log_entries = get_transaction_log()
+                filter_transaction_log_menu(transaction_log_entries, user)
 
             case _:
                 print("Invalid choice")
@@ -150,35 +151,24 @@ def filter_transaction_menu():
     choice = input("Enter your choice: ")
     return choice
 
-def filter_transaction_log_menu():
-    while True:
-        choice = filter_transaction_menu()
-        if choice == "1":
-            date = input("Enter date (YYYY-MM-DD): ")
-            transaction_log = get_transaction_log()
-            filtered_log = filter_transaction_log({"date": date}, transaction_log)
-            print_filtered_log(filtered_log)
-        elif choice == "2":
-            transaction_type = input("Enter transaction type: ")
-            transaction_log = get_transaction_log()
-            filtered_log = filter_transaction_log({"transaction_type": transaction_type}, transaction_log)
-            print_filtered_log(filtered_log)
-        elif choice == "3":
-            sender = input("Enter sender username: ")
-            transaction_log = get_transaction_log()
-            filtered_log = filter_transaction_log({"from_user": sender}, transaction_log)
-            print_filtered_log(filtered_log)
-        elif choice == "4":
-            receiver = input("Enter receiver username: ")
-            transaction_log = get_transaction_log()
-            filtered_log = filter_transaction_log({"to_user": receiver}, transaction_log)
-            print_filtered_log(filtered_log)
-        elif choice == "5":
-            break
-        else:
-            print("Invalid choice. Please try again.")
+def filter_transaction_log_menu(transaction_log_entries, user):
+    print("1. Display all transactions for user")
+    print("2. Display all transactions for user within a date range")
+    choice = input("Enter your choice: ")
 
+    start_date = end_date = None
+    if choice == "2":
+        start_date = input("Enter start date (YYYY-MM-DD HH:MM:SS): ")
+        end_date = input("Enter end date (YYYY-MM-DD HH:MM:SS): ")
 
+    filtered_log = filter_transaction_log(transaction_log_entries, user, start_date, end_date)
+
+    if filtered_log:
+        print("Filtered Transaction Log:")
+        for entry in filtered_log:
+            print(entry)
+    else:
+        print("No transactions found for the specified criteria.")
 
 
 

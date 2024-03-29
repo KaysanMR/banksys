@@ -1,6 +1,6 @@
 from file_manager import write
 from display import current_time
-
+from datetime import datetime1
 
 def log_entry(action, session="SYSTEM", file="log.txt"):
     log = f"{current_time(2)}: [{session}] {action}\n"
@@ -15,31 +15,38 @@ def log_transaction(from_user, to_user=None, amount=0, transaction_type=None):
 
 
 
-def filter_transaction_log(filter_criteria, transaction_log_entries):
+from datetime import datetime
+
+def filter_transaction_log(transaction_log_entries, user, start_date=None, end_date=None):
     filtered_log = []
 
     for entry in transaction_log_entries:
         try:
-            timestamp, details = entry.split(": ", 1)
-            details_parts = details.split(", ")
-            transaction_type = details_parts[0].split(": ")[1]
+            parts = entry.split(", ")
+            timestamp_part, user_part = parts[0].split(": "), parts[1]
+            timestamp_str = timestamp_part[0] + " " + timestamp_part[1]
+            log_user = user_part.split(": ")[1]
 
-            # Adjust the parsing according to your log format
-            from_user = details_parts[1].split(": ")[1] if len(details_parts) > 1 else None
-            to_user = details_parts[2].split(": ")[1] if len(details_parts) > 2 else None
-            amount = float(details_parts[3].split(": ")[1]) if len(details_parts) > 3 else None
-
-            if (filter_criteria.get("date") and filter_criteria["date"] not in timestamp) or \
-               (filter_criteria.get("transaction_type") and transaction_type != filter_criteria["transaction_type"]) or \
-               (filter_criteria.get("from_user") and from_user and from_user != filter_criteria["from_user"]) or \
-               (filter_criteria.get("to_user") and to_user and to_user != filter_criteria["to_user"]):
+            if log_user != user:
                 continue
 
+            timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+            if start_date and end_date:
+                start_dt = datetime.strptime(start_date, "%Y-%m-%d %H:%M:%S")
+                end_dt = datetime.strptime(end_date, "%Y-%m-%d %H:%M:%S")
+                if not (start_dt <= timestamp <= end_dt):
+                    continue
+
             filtered_log.append(entry)
-        except IndexError:
-            print(f"Skipping malformed log entry: {entry}")
+        except (IndexError, ValueError):
+            print(f"Skipping log entry: {entry}")
 
     return filtered_log
+
+
+
+
+
 
 
 def get_transaction_log():
