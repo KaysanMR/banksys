@@ -1,4 +1,6 @@
 from datetime import datetime
+
+import logger
 from file_manager import save, load
 from logger import log_entry
 
@@ -33,23 +35,26 @@ def new_user(data, admin=False, session="SYSTEM"):
                 # balance = -500.00
     else:
         uid = new_id(username, admin)
-        balance = 0
 
     password = username[:3] + uid[8:]
-    data.append([uid, username, password, balance])
+    user = [uid, username, password, balance]
+    data.append(user)
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
+
+    add_info(user, data)
+
     log_entry(f"created new user {uid} admin={admin}", session[0])
     print("Account created")
 
 
-def new_id(username, admin=False, account_type="saving"):
+def new_id(username, admin=False, acct_type="saving"):
     timestamp = round(datetime.timestamp(datetime.now()))
     identifier = username[:3].upper() + str(timestamp)
     if admin:
         identifier = identifier + "A"
-    if account_type == "saving":
+    if acct_type == "saving":
         identifier = identifier + "S"
-    if account_type == "current":
+    if acct_type == "current":
         identifier = identifier + "C"
     return identifier
 
@@ -87,19 +92,17 @@ def login(user_list, admin_list):
 
 def validate_user(data, user_id):
     try:
-        user = [user for user in data if user[0] == user_id][0]
+        user = [user for user in data if user[0] == user_id][0]  # fetch username from data
         password = input("Enter your password: ")
         if password == user[2]:
             print("Logged in successfully.")
-            log_entry(f"User {user_id} logged in successfully.")
             return user
         else:
             print("Incorrect password, please try again.")
-            log_entry(f"User {user_id} attempted to login with incorrect password.")
 
     except IndexError:
-        print("UID does not match any known user. \nEnter <X> to exit.")
-        log_entry(f"Login attempt with unknown UID: {user_id}")
+        print("UID does not match any known user. "
+              "\nEnter <X> to exit.")
         return None
 
 
@@ -128,42 +131,88 @@ def search(data):
     return results
 
 
-def manage(data):
+def manage(data, session):
     # search & display results
     users = search(data)
     headings = ["UID", "USERNAME"]
     display.table(users, headings)
     # select user to edit
     while True:
-        select = input("Select user #: ")
+        if len(users) == 1:
+            select = 1
+        else:
+            select = input("Select user #: ")
         if int(select) - 1 in range(len(users)):
             user = users[int(select) - 1]
-            print(user)
+            view_user(user, pause=False)
             break
         else:
             print(f"Please select an item in range 1-{len(users) + 1}")
-    # edit function here
+    edit_account(user, session)
+    save(data)
 
 
 def add_info(user, data):
     print("Updating details for user:", user[1])
 
     email = input("Enter email: ")
-    phone = input("Enter phone: ")
-    address = input("Enter home address: ")
+    phone = input("Enter phone number: ")
+    address = str(input("Enter home address: "))
 
     employment = None
-    while employment not in ["working", "student", "none"]:
-        employment = input("Select employment status (working/student/none): ").lower()
+    while employment not in ["working", "student", "unemployed"]:
+        employment = input("Select employment status (working/student/unemployed): ").lower()
 
-    workplace = ''
-    if employment == "working":
-        workplace = input("Enter place of employment: ")
-
-    user.extend([email, phone, address, employment, workplace])
+    user.extend([email, phone, employment, address])
     save(data, "accounts.csv")
 
     print("User details updated.")
+
+
+def edit_account(user, session):
+    while True:
+        print("\n1. Email")
+        print("2. Phone number")
+        print("3. Employment Status")
+        print("4. Address")
+        print("X. Exit\n")
+        while True:
+            match input("Select an attribute (1-4) to edit: "):
+                case "1":
+                    edit_attribute(user, 0, session)
+                    break
+                case "2":
+                    edit_attribute(user, 1, session)
+                    break
+                case "3":
+                    edit_attribute(user, 2, session)
+                    break
+                case "4":
+                    edit_attribute(user, 3, session)
+                    break
+                case x if x.upper() == "X":
+                    return
+                case _:
+                    print("Invalid input, please choose a number (1-4).")
+
+
+def edit_attribute(user, select, session):
+    index = select + 4
+    properties = ["email", "phone number", "employment status", "address"]
+    print(f"Current {properties[select]}: {user[index]}")
+    new_property = input(f"Enter new {properties[select]}: ")
+    if new_property:
+        while True:
+            confirm = input(f"Change {properties[select]} to {new_property}? (y/n): ")
+            if confirm.upper() == "Y":
+                user[index] = new_property
+                logger.log_entry(f"updated {user[0]}'s {properties[select]} to {new_property}", session)
+                print(f"updated {properties[select]} to {new_property}.")
+                break
+            elif confirm.upper() == "N":
+                return
+            else:
+                print("Invalid choice. Please enter (y/n).")
 
 
 def account_type(identifier):
@@ -180,4 +229,4 @@ def account_type(identifier):
 
 if __name__ == "__main__":
     userlist = load("accounts.csv")
-    manage(userlist)
+    manage(userlist, session="Admin")
