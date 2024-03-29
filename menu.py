@@ -3,8 +3,7 @@ import display
 import file_manager
 import transaction
 from transaction import transfer_funds
-from logger import filter_transaction_log, log_transaction
-from logger import get_transaction_log
+from logger import filter_transaction_log, log_transaction, get_transaction_log
 def main_menu(user_list, admin_list):
     while True:
         display.box("MENU", 32)
@@ -65,7 +64,7 @@ def admin_menu(user_list, user):
             case _:
                 print("Invalid choice")
 
-# ... other imports ...
+
 
 def perform_transfer(user, user_list):
     recipient_id = input("Enter the recipient's account ID: ")
@@ -141,15 +140,9 @@ def user_menu(user, user_list):
                 print("Invalid choice")
 
 # if __name__ == "__main__":
-def filter_transaction_menu():
-    print("Filter Transaction Log Menu:")
-    print("1. Filter by Date")
-    print("2. Filter by Transaction Type")
-    print("3. Filter by Sender")
-    print("4. Filter by Receiver")
-    print("5. Return to Previous Menu")
-    choice = input("Enter your choice: ")
-    return choice
+
+
+from datetime import datetime
 
 def filter_transaction_log_menu(transaction_log_entries, user):
     print("1. Display all transactions for user")
@@ -157,9 +150,23 @@ def filter_transaction_log_menu(transaction_log_entries, user):
     choice = input("Enter your choice: ")
 
     start_date = end_date = None
+
     if choice == "2":
-        start_date = input("Enter start date (YYYY-MM-DD HH:MM:SS): ")
-        end_date = input("Enter end date (YYYY-MM-DD HH:MM:SS): ")
+        while True:
+            start_date = input("Enter start date (YYYY-MM-DD): ")
+            try:
+                datetime.strptime(start_date, "%Y-%m-%d")
+                break
+            except ValueError:
+                print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
+
+        while True:
+            end_date = input("Enter end date (YYYY-MM-DD): ")
+            try:
+                datetime.strptime(end_date, "%Y-%m-%d")
+                break
+            except ValueError:
+                print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
 
     filtered_log = filter_transaction_log(transaction_log_entries, user, start_date, end_date)
 
@@ -169,6 +176,10 @@ def filter_transaction_log_menu(transaction_log_entries, user):
             print(entry)
     else:
         print("No transactions found for the specified criteria.")
+
+
+
+
 
 
 
