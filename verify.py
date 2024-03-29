@@ -106,7 +106,6 @@ def verify_address(address):
         return False
 
     character_error = ([not char.isalnum() and char != " " for char in list(address)])
-    # print([not char.isalnum() and char != " " for char in list(address)])
 
     if not any(character_error):
         print("Address validated.")

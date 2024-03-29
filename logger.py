@@ -2,9 +2,6 @@ from file_manager import write
 from display import current_time
 
 
-# from datetime import datetime
-
-
 def log_entry(action, session="SYSTEM", file="log.txt"):
     log = f"{current_time(2)}: [{session}] {action}\n"
     write(log, file)
