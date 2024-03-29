@@ -171,6 +171,3 @@ def super_menu(admin_list, user):
             case _:
                 print("Invalid choice")
 
-
-if __name__ == "__main__":
-    pass

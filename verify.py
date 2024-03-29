@@ -132,13 +132,3 @@ def validate_attribute(properties, select):
             case 3:
                 if verify_address(new_property):
                     return new_property
-
-
-def main():
-    while True:
-        email_address = input("Enter email address to validate: ")
-        verify_email(email_address)
-
-
-if __name__ == "__main__":
-    main()

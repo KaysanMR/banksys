@@ -69,7 +69,3 @@ def validate_date():
         except ValueError:
             print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
 
-
-if __name__ == "__main__":
-    # filter_logs(["HOU1708434041S", 0, 0])
-    pass

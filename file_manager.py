@@ -32,7 +32,3 @@ def write(data, filename):
     with open(filename, "a") as file:
         file.write(data)
 
-
-if __name__ == "__main__":
-    users = load("accounts.csv")
-    save(users)

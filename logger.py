@@ -17,7 +17,3 @@ def log_transaction(from_user, to_user=None, amount=0, transaction_type=None):
     else:
         log_entry(f"Transaction: {transaction_type}, user: {from_user[0]}, amount: {amount}",
                   file="transaction_log.txt")
-
-
-if __name__ == "__main__":
-    pass

@@ -248,8 +248,3 @@ def account_type(identifier):
             return "admin"
         case _:
             return None
-
-
-if __name__ == "__main__":
-    userlist = load("accounts.csv")
-    manage(userlist, session="Admin")

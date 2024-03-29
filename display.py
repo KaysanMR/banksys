@@ -44,14 +44,3 @@ def confirm_exit():
             return False
         else:
             print("Invalid input, please try again.")
-
-
-if __name__ == "__main__":
-    if confirm_exit():
-        print("foo")
-    else:
-        print("bar")
-    # pass
-    # users = accounts.load("accounts.csv")
-    # headers = ["UID", "USERNAME"]
-    # table(users, headers)
