@@ -20,17 +20,16 @@ def get_transaction_log():
         return file.readlines()
 
 
-from datetime import datetime
 
 def filter_transaction_log(transaction_log_entries, user, start_date=None, end_date=None):
     filtered_log = []
 
     for entry in transaction_log_entries:
         try:
-            date_str, rest_of_entry = entry.split(", ", 1)[0].split(" ", 1)
+            date_str, details = entry.split(",", 1)[0].split(" ", 1)
             entry_date = datetime.strptime(date_str, "%Y-%m-%d").date()
 
-            if user not in rest_of_entry:
+            if user not in details:
                 continue
 
             if start_date and end_date:
@@ -44,6 +43,7 @@ def filter_transaction_log(transaction_log_entries, user, start_date=None, end_d
             print(f"Error processing entry: {entry}, Error: {e}")
 
     return filtered_log
+
 
 
 

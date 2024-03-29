@@ -144,29 +144,25 @@ def user_menu(user, user_list):
 
 from datetime import datetime
 
+def get_validated_date(prompt):
+    while True:
+        date_input = input(prompt)
+        try:
+            datetime.strptime(date_input, "%Y-%m-%d")
+            return date_input
+        except ValueError:
+            print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
+
+
 def filter_transaction_log_menu(transaction_log_entries, user):
     print("1. Display all transactions for user")
     print("2. Display all transactions for user within a date range")
     choice = input("Enter your choice: ")
 
     start_date = end_date = None
-
     if choice == "2":
-        while True:
-            start_date = input("Enter start date (YYYY-MM-DD): ")
-            try:
-                datetime.strptime(start_date, "%Y-%m-%d")
-                break
-            except ValueError:
-                print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
-
-        while True:
-            end_date = input("Enter end date (YYYY-MM-DD): ")
-            try:
-                datetime.strptime(end_date, "%Y-%m-%d")
-                break
-            except ValueError:
-                print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
+        start_date = get_validated_date("Enter start date (YYYY-MM-DD): ")
+        end_date = get_validated_date("Enter end date (YYYY-MM-DD): ")
 
     filtered_log = filter_transaction_log(transaction_log_entries, user, start_date, end_date)
 
@@ -176,6 +172,7 @@ def filter_transaction_log_menu(transaction_log_entries, user):
             print(entry)
     else:
         print("No transactions found for the specified criteria.")
+
 
 
 
