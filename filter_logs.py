@@ -23,6 +23,7 @@ def filter_logs(user, file="log.txt", admin=False):
                             [print(log) for log in filtered_logs[-int(amount):]]  # last n items in filtered_logs
                         except IndexError:
                             [print(log) for log in filtered_logs]
+                        input("Press Enter/Return to continue.")
                         break
             case "2":
                 start_date, end_date = get_dates()
@@ -32,6 +33,7 @@ def filter_logs(user, file="log.txt", admin=False):
                     if start_date <= log_date <= end_date:
                         logs_in_range.append(log)
                 [print(log) for log in logs_in_range]
+                input("Press Enter/Return to continue.")
 
             case x if x.upper() == "X":
                 return

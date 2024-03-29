@@ -49,7 +49,9 @@ def admin_menu(user_list, user, admin_list):
 
             case "2":
                 print("\n-----MANAGE ACCOUNTS-----")
-                accounts.manage(user_list, session=user)
+                customer = accounts.select_account(user_list, session=user)
+                accounts.edit_account(customer, session=user)
+                file_manager.save(user_list)
 
             case "3":
                 print("\n-----LOGS-----")
@@ -57,7 +59,7 @@ def admin_menu(user_list, user, admin_list):
 
             case "4":
                 print("\n-----GENERATE BANK STATEMENT-----")
-                customer = accounts.search(user_list)
+                customer = accounts.select_account(user_list, session=user)
                 filter_logs(customer, file="transaction_log.txt")
                 print(f"{customer[1]}'s CURRENT BALANCE: {user[3]}")
 

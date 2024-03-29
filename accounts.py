@@ -136,7 +136,7 @@ def search(data):
     return results
 
 
-def manage(data, session):
+def select_account(data, session):
     # search & display results
     users = search(data)
     headings = ["UID", "USERNAME"]
@@ -150,11 +150,9 @@ def manage(data, session):
         if int(select) - 1 in range(len(users)):
             user = users[int(select) - 1]
             view_user(user, pause=False)
-            break
+            return user
         else:
             print(f"Please select an item in range 1-{len(users) + 1}")
-    edit_account(user, session)
-    save(data)
 
 
 def add_info(user, data):
