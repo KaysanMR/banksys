@@ -85,7 +85,7 @@ def login(user_list, admin_list):
                 session_user = validate_user(admin_list, user_id)
                 if session_user:
                     log_entry(action=f"logged in as {session_user[0]}")
-                    menu.admin_menu(user_list, session_user)
+                    menu.admin_menu(user_list, session_user, admin_list)
                     return session_user
             case 2:
                 session_user = validate_user(user_list, user_id)
@@ -217,13 +217,26 @@ def edit_attribute(user, select, session):
             confirm = input(f"Change {properties[select]} to {new_property}? (y/n): ")
             if confirm.upper() == "Y":
                 user[index] = new_property
-                logger.log_entry(f"updated {user[0]}'s {properties[select]} to {new_property}", session)
+                logger.log_entry(f"updated {user[0]}'s {properties[select]} to {new_property}", session[0])
                 print(f"updated {properties[select]} to {new_property}.")
                 break
             elif confirm.upper() == "N":
                 return
             else:
                 print("Invalid choice. Please enter (y/n).")
+
+
+def change_password(user):
+    while True:
+        new_password = input("Enter new password: ")
+        confirm = input("Are you sure you want to change password? (y/n): ")
+        if confirm.upper() == "Y":
+            user[2] = new_password
+            return user
+        elif confirm.upper() == "N":
+            return
+        else:
+            print("Invalid input. Please select y/n. ")
 
 
 def account_type(identifier):

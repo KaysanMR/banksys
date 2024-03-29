@@ -30,13 +30,14 @@ def main_menu(user_list, admin_list):
                 print("Invalid choice")
 
 
-def admin_menu(user_list, user):
+def admin_menu(user_list, user, admin_list):
     while True:
         display.box("ADMIN", 32)
         display.greet(user)
         print("  1. Create account")
         print("  2. Manage accounts")
         print("  3. View logs")
+        print("  4. Change Password")
         print("  X. Exit")
         choice = input("Enter your choice: > ")
 
@@ -52,6 +53,11 @@ def admin_menu(user_list, user):
             case "3":
                 print("\n-----LOGS-----")
                 filter_logs(user, file="log.txt")
+
+            case "4":
+                print("\n-----CHANGE PASSWORD-----")
+                accounts.change_password(user)
+                file_manager.save(admin_list)
 
             case x if x.upper() == "X":
                 match input("\nLog out? (y/n): "):
@@ -74,6 +80,7 @@ def user_menu(user, user_list):
         print("  2. Deposit / Withdraw")
         print("  3. Bank Statement")
         print("  4. Transfer Funds")
+        print("  5. Change Password")
         print("  X. Exit")
         choice = input("Enter your choice: ")
 
@@ -105,6 +112,11 @@ def user_menu(user, user_list):
 
             case "4":
                 transaction.perform_transfer(user, user_list)
+                file_manager.save(user_list)
+
+            case "5":
+                print("\n-----CHANGE PASSWORD-----")
+                accounts.change_password(user)
                 file_manager.save(user_list)
 
             case x if x.upper() == "X":
