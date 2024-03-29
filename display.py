@@ -28,6 +28,7 @@ def table(data, headings, cell_width=15):
 
 
 def box(content, width):
+    print("\n")
     text_box = str("│{:^" + str(width) + "}│")
     print(f"┼{"─" * width}┼")
     print(text_box.format(content))

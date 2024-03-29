@@ -99,3 +99,107 @@
 2024-03-27 15:22:58: [SYSTEM] updated KAY1711520947C's phone to 01116357351
 2024-03-27 15:23:40: [SYSTEM] updated KAY1711520947C's address to Parkhill Residences
 2024-03-27 15:24:12: [Admin] updated KAY1711520947C's employment status to employed
+2024-03-27 14:13:06: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:15:15: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:28:17: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:30:29: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:44:29: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:48:48: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:57:39: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 14:59:33: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:02:09: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:06:42: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:07:15: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:11:31: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:14:11: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:15:16: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:16:17: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:17:34: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:18:33: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:22:03: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:22:43: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:24:14: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:24:50: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:27:11: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:27:54: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:35:31: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 15:40:40: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-27 19:31:31: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:21:53: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:25:32: [SYSTEM] Login attempt with unknown UID: 2
+2024-03-29 14:26:29: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:30:18: [SYSTEM] Login attempt with unknown UID: Enter your UID:
+2024-03-29 14:30:31: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:36:03: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:38:14: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:43:00: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:47:19: [SYSTEM] User BAK1708434037S attempted to login with incorrect password.
+2024-03-29 14:47:32: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:50:05: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:52:12: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 14:59:07: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:00:35: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:03:59: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:05:19: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:07:10: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:17:51: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:21:35: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:23:01: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 15:23:37: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 22:06:04: [SYSTEM] Login attempt with unknown UID: Enter your UID:
+2024-03-29 22:06:13: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:07:19: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:08:16: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:50:04: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:51:27: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:52:10: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:53:06: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:54:50: [SYSTEM] User KAY1708434033S logged in successfully.
+2024-03-29 22:56:52: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 22:58:11: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 23:01:23: [SYSTEM] User BAK1708434037S logged in successfully.
+2024-03-29 23:05:52: [SYSTEM] User A logged in successfully.
+2024-03-29 23:05:52: [SYSTEM] logged in as A
+2024-03-29 23:06:27: [SYSTEM] User A logged in successfully.
+2024-03-29 23:06:27: [SYSTEM] logged in as A
+2024-03-29 23:06:31: [A] created new user KAY1711724792S admin=False
+2024-03-29 23:13:58: [SYSTEM] logged in as A
+2024-03-29 23:14:31: [A] created new user BAK1711725254S admin=False
+2024-03-29 23:15:42: [A] created new user RAA1711725309C admin=False
+2024-03-29 23:53:19: [SUPERUSER] created new user KAY1711727569AS admin=True
+2024-03-30 00:03:44: [SUPERUSER] created new user HOU1711728225AS admin=True
+2024-03-30 00:13:34: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 02:20:48: [Admin] updated KAY1711727569AS's email to kaysanmr@gmail.com
+2024-03-30 02:48:49: [Admin] updated KAY1711727569AS's phone number to 1116357351
+2024-03-30 03:24:06: [Admin] updated KAY1711727569AS's address to Parkhill
+2024-03-30 03:27:21: [Admin] updated KAY1711727569AS's address to Parkhill Residence
+2024-03-30 03:28:28: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 03:28:37: [SUPERUSER] created new user MAI1711740517AS admin=True
+2024-03-30 03:30:07: [SYSTEM] logged in as A
+2024-03-30 03:32:08: [A] created new user HOU1711740647C admin=False
+2024-03-30 03:32:45: [SYSTEM] logged in as A
+2024-03-30 03:33:14: [A] created new user RAA1711740772S admin=False
+2024-03-30 03:35:22: [['A', 'Admin', 'a', '0']] updated RAA1711740772S's phone number to 0123456789
+2024-03-30 03:35:43: [['A', 'Admin', 'a', '0']] updated RAA1711740772S's address to House Address
+2024-03-30 03:37:15: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 03:37:24: [SUPERUSER] created new user YAM1711741044AS admin=True
+2024-03-30 03:37:31: [SYSTEM] logged in as A
+2024-03-30 03:38:01: [A] created new user TES1711741059S admin=False
+2024-03-30 03:52:45: [SYSTEM] logged in as A
+2024-03-30 03:53:44: [SYSTEM] logged in as A
+2024-03-30 03:54:15: [A] created new user YAM1711742036C admin=False
+2024-03-30 03:58:11: [SYSTEM] logged in as A
+2024-03-30 04:00:03: [SYSTEM] logged in as A
+2024-03-30 04:00:44: [A] created new user HAB1711742415S admin=False
+2024-03-30 04:18:30: [SYSTEM] logged in as A
+2024-03-30 04:24:51: [SYSTEM] logged in as A
+2024-03-30 04:33:03: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 04:33:14: [SUPERUSER] created new user AZA1711744395AS admin=True
+2024-03-30 04:34:40: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 04:34:48: [SUPERUSER] created new user AHM1711744488A admin=True
+2024-03-30 04:39:40: [SYSTEM] logged in as A
+2024-03-30 04:42:15: [SYSTEM] logged in as A
+2024-03-30 04:47:08: [SYSTEM] logged in as A
+2024-03-30 04:47:56: [SYSTEM] logged in as A
+2024-03-30 04:49:48: [SYSTEM] logged in as A
+2024-03-30 04:50:29: [SYSTEM] logged in as A
