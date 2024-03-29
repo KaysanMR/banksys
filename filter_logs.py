@@ -2,9 +2,9 @@ from datetime import datetime, date
 from file_manager import get
 
 
-def filter_logs(user):
+def filter_logs(user, file="log.txt"):
     uid = user[0]
-    logs = get("transaction_log.txt")
+    logs = get(file)
     filtered_logs = [log for log in logs if uid in log]
     while True:
         print("1. Filter Last n entries")
