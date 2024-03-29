@@ -89,3 +89,5 @@
 2024-03-29 23:13:58: [SYSTEM] logged in as A
 2024-03-29 23:14:31: [A] created new user BAK1711725254S admin=False
 2024-03-29 23:15:42: [A] created new user RAA1711725309C admin=False
+2024-03-29 23:53:19: [SUPERUSER] created new user KAY1711727569AS admin=True
+2024-03-30 00:03:44: [SUPERUSER] created new user HOU1711728225AS admin=True

@@ -29,10 +29,9 @@ def new_user(data, admin=False, session="SYSTEM"):
                     "Enter selection: ").upper():
             case "S":
                 uid = new_id(username, admin, "saving")
-                # balance = -100.00
             case "C":
                 uid = new_id(username, admin, "current")
-                # balance = -500.00
+
     else:
         uid = new_id(username, admin)
 
@@ -41,7 +40,7 @@ def new_user(data, admin=False, session="SYSTEM"):
     data.append(user)
     save(data, "accounts.csv") if not admin else save(data, "admin.csv")
 
-    add_info(user, data)
+    if not admin: add_info(user, data)
 
     log_entry(f"created new user {uid} admin={admin}", session[0])
     print("Account created")
@@ -76,7 +75,7 @@ def login(user_list, admin_list):
 
         match check_admin(user_id):
             case 0:
-                print("SUPERUSER MENU")  # add super menu
+                menu.super_menu(admin_list, ["SUPERUSER", "SUPERUSER"])
             case 1:
                 session_user = validate_user(admin_list, user_id)
                 if session_user:
