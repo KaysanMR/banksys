@@ -14,7 +14,7 @@ def withdraw(user, amount):
 
     account_type = user[0][-1]
     withdraw_limit = 500 if account_type == "C" else 100
-    if amount > withdraw_limit:
+    if (balance - amount) < withdraw_limit:
         print(f"Exceeds withdrawal limit for {account_type} account.")
         return
 
