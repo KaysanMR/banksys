@@ -75,7 +75,11 @@ def login(user_list, admin_list):
 
         match check_admin(user_id):
             case 0:
-                menu.super_menu(admin_list, ["SUPERUSER", "SUPERUSER"])
+                session_user = validate_user([["SUPERUSER_A", "SUPERUSER", "Ac355-c0d3"]], user_id)
+                if session_user:
+                    log_entry(action=f"logged in as {session_user[0]}")
+                    menu.super_menu(admin_list, ["SUPERUSER", "SUPERUSER"])
+                    return session_user
             case 1:
                 session_user = validate_user(admin_list, user_id)
                 if session_user:

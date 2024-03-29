@@ -125,8 +125,7 @@ def super_menu(admin_list, user):
         display.box("ADMIN", 32)
         display.greet(user)
         print("  1. Create admin account")
-        print("  2. Manage admin accounts")
-        print("  3. View logs")
+        print("  2. View logs")
         print("  X. Exit")
         choice = input("Enter your choice: > ")
 
@@ -136,10 +135,6 @@ def super_menu(admin_list, user):
                 accounts.new_user(admin_list, admin=True, session=user)
 
             case "2":
-                print("\n-----MANAGE ACCOUNTS-----")
-                accounts.manage(admin_list, session=user)
-
-            case "3":
                 print("\n-----LOGS-----")
                 filter_logs(user, file="log.txt")
 

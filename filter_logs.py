@@ -69,4 +69,5 @@ def validate_date():
 
 
 if __name__ == "__main__":
-    filter_logs(["HOU1708434041S", 0, 0])
+    # filter_logs(["HOU1708434041S", 0, 0])
+    pass

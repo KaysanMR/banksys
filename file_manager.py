@@ -3,9 +3,6 @@ def load(filename):
         with open(filename, "r") as file:
             content = file.readlines()
             data = [line.strip().split(",") for line in content]
-            # for user in data:
-            #     if len(user) < 4:
-            #         user.append(0)
             return data
     except FileNotFoundError:
         return None
