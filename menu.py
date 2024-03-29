@@ -101,7 +101,7 @@ def user_menu(user, user_list):
 
             case "3":
                 print("\n-----TRANSACTION HISTORY-----")
-                bank_statement.generate_statement(user)
+                bank_statement.filter_logs(user)
 
             case "4":
                 transaction.perform_transfer(user, user_list)

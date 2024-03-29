@@ -2,13 +2,13 @@ from datetime import datetime, date
 from file_manager import get
 
 
-def generate_statement(user):
+def filter_logs(user):
     uid = user[0]
     logs = get("transaction_log.txt")
     filtered_logs = [log for log in logs if uid in log]
     while True:
-        print("1. Filter Last n transactions")
-        print("2. Filter transactions by date")
+        print("1. Filter Last n entries")
+        print("2. Filter entries by date")
         print("X. Exit")
 
         choice = input("Select an option (1/2/X): ")
@@ -69,7 +69,7 @@ def validate_date():
 
 
 if __name__ == "__main__":
-    generate_statement(["HOU1708434041S", 0, 0])
+    filter_logs(["HOU1708434041S", 0, 0])
 
 
 #
