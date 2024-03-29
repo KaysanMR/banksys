@@ -18,7 +18,7 @@ def filter_logs(user, file="log.txt", admin=False):
                 while True:
                     amount = input("Show how many entries?: ")
                     if amount.isnumeric():
-                        # print(f"Showing last {amount} entries:\n")
+                        print(f"Showing last {amount} entries:\n")
                         try:
                             [print(log) for log in filtered_logs[-int(amount):]]  # last n items in filtered_logs
                         except IndexError:

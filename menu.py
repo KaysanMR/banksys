@@ -37,7 +37,8 @@ def admin_menu(user_list, user, admin_list):
         print("  1. Create account")
         print("  2. Manage accounts")
         print("  3. View logs")
-        print("  4. Change Password")
+        print("  4. Generate User Bank Statement")
+        print("  5. Change Password")
         print("  X. Exit")
         choice = input("Enter your choice: > ")
 
@@ -55,9 +56,15 @@ def admin_menu(user_list, user, admin_list):
                 filter_logs(user, file="log.txt")
 
             case "4":
+                print("\n-----GENERATE BANK STATEMENT-----")
+                customer = accounts.search(user_list)
+                filter_logs(customer, file="transaction_log.txt")
+                print(f"{customer[1]}'s CURRENT BALANCE: {user[3]}")
+
+            case "5":
                 print("\n-----CHANGE PASSWORD-----")
                 accounts.change_password(user)
-                file_manager.save(admin_list)
+                file_manager.save(admin_list, filename="admin.csv")
 
             case x if x.upper() == "X":
                 match input("\nLog out? (y/n): "):
@@ -106,7 +113,7 @@ def user_menu(user, user_list):
                 file_manager.save(user_list)
 
             case "3":
-                print("\n-----TRANSACTION HISTORY-----")
+                print("\n-----GENERATE BANK STATEMENT-----")
                 filter_logs(user, file="transaction_log.txt")
                 print(f"CURRENT BALANCE: {user[3]}")
 
