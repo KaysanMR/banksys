@@ -92,3 +92,25 @@
 2024-03-29 23:53:19: [SUPERUSER] created new user KAY1711727569AS admin=True
 2024-03-30 00:03:44: [SUPERUSER] created new user HOU1711728225AS admin=True
 2024-03-30 00:13:34: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 02:20:48: [Admin] updated KAY1711727569AS's email to kaysanmr@gmail.com
+2024-03-30 02:48:49: [Admin] updated KAY1711727569AS's phone number to 1116357351
+2024-03-30 03:24:06: [Admin] updated KAY1711727569AS's address to Parkhill
+2024-03-30 03:27:21: [Admin] updated KAY1711727569AS's address to Parkhill Residence
+2024-03-30 03:28:28: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 03:28:37: [SUPERUSER] created new user MAI1711740517AS admin=True
+2024-03-30 03:30:07: [SYSTEM] logged in as A
+2024-03-30 03:32:08: [A] created new user HOU1711740647C admin=False
+2024-03-30 03:32:45: [SYSTEM] logged in as A
+2024-03-30 03:33:14: [A] created new user RAA1711740772S admin=False
+2024-03-30 03:35:22: [['A', 'Admin', 'a', '0']] updated RAA1711740772S's phone number to 0123456789
+2024-03-30 03:35:43: [['A', 'Admin', 'a', '0']] updated RAA1711740772S's address to House Address
+2024-03-30 03:37:15: [SYSTEM] logged in as SUPERUSER_A
+2024-03-30 03:37:24: [SUPERUSER] created new user YAM1711741044AS admin=True
+2024-03-30 03:37:31: [SYSTEM] logged in as A
+2024-03-30 03:38:01: [A] created new user TES1711741059S admin=False
+2024-03-30 03:52:45: [SYSTEM] logged in as A
+2024-03-30 03:53:44: [SYSTEM] logged in as A
+2024-03-30 03:54:15: [A] created new user YAM1711742036C admin=False
+2024-03-30 03:58:11: [SYSTEM] logged in as A
+2024-03-30 04:00:03: [SYSTEM] logged in as A
+2024-03-30 04:00:44: [A] created new user HAB1711742415S admin=False

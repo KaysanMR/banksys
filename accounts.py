@@ -6,6 +6,7 @@ from logger import log_entry
 
 import display
 import menu
+import verify
 
 
 def new_user(data, admin=False, session="SYSTEM"):
@@ -157,13 +158,18 @@ def manage(data, session):
 
 def add_info(user, data):
     print("Updating details for user:", user[1])
+    email, phone, address, employment = None, None, None, None
 
-    email = input("Enter email: ")
-    phone = input("Enter phone number: ")
-    address = str(input("Enter home address: "))
+    while not verify.verify_email(email):
+        email = input("Enter email address: ")
 
-    employment = None
-    while employment not in ["working", "student", "unemployed"]:
+    while not verify.verify_phone(phone):
+        phone = input("Enter phone number: ")
+
+    while not verify.verify_address(address):
+        address = input("Enter home address: ")
+
+    while not verify.verify_employment(employment):
         employment = input("Select employment status (working/student/unemployed): ").lower()
 
     user.extend([email, phone, employment, address])
@@ -203,7 +209,9 @@ def edit_attribute(user, select, session):
     index = select + 4
     properties = ["email", "phone number", "employment status", "address"]
     print(f"Current {properties[select]}: {user[index]}")
-    new_property = input(f"Enter new {properties[select]}: ")
+
+    new_property = verify.validate_attribute(properties, select)
+
     if new_property:
         while True:
             confirm = input(f"Change {properties[select]} to {new_property}? (y/n): ")
