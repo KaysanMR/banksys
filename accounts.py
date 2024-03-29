@@ -52,10 +52,11 @@ def new_id(username, admin=False, acct_type="saving"):
     identifier = username[:3].upper() + str(timestamp)
     if admin:
         identifier = identifier + "A"
-    if acct_type == "saving":
-        identifier = identifier + "S"
-    if acct_type == "current":
-        identifier = identifier + "C"
+    else:
+        if acct_type == "saving":
+            identifier = identifier + "S"
+        if acct_type == "current":
+            identifier = identifier + "C"
     return identifier
 
 
