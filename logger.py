@@ -1,6 +1,8 @@
 from file_manager import write
 from display import current_time
-from datetime import datetime
+
+
+# from datetime import datetime
 
 
 def log_entry(action, session="SYSTEM", file="log.txt"):

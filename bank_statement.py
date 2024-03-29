@@ -1,18 +1,71 @@
-from datetime import datetime
+from datetime import datetime, date
+from file_manager import get
 
-# def get_transaction_log():
-#     with open("transaction_log.txt", "r") as file:
-#         return file.readlines()
-#
-#
-# def get_validated_date(prompt):
-#     while True:
-#         date_input = input(prompt)
-#         try:
-#             datetime.strptime(date_input, "%Y-%m-%d")
-#             return date_input
-#         except ValueError:
-#             print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
+
+def generate_statement(user):
+    uid = user[0]
+    logs = get("transaction_log.txt")
+    filtered_logs = [log for log in logs if uid in log]
+    while True:
+        print("1. Filter Last n transactions")
+        print("2. Filter transactions by date")
+        print("X. Exit")
+
+        choice = input("Select an option (1/2/X): ")
+
+        match choice:
+            case "1":
+                while True:
+                    amount = input("Show how many entries?: ")
+                    if amount.isnumeric():
+                        # print(f"Showing last {amount} entries:\n")
+                        try:
+                            [print(log) for log in filtered_logs[-int(amount):]]  # last n items in filtered_logs
+                        except IndexError:
+                            [print(log) for log in filtered_logs]
+                        break
+            case "2":
+                start_date, end_date = get_dates()
+
+            case x if x.upper() == "X":
+                return
+
+
+def get_dates():
+    while True:
+        print("Enter start date: ")
+        start_date = split_date(validate_date())
+
+        print("Enter end date: ")
+        end_date = split_date(validate_date())
+
+        if end_date > start_date:
+            break
+        else:
+            print("End date must be after start date.")
+
+    return start_date, end_date
+
+
+def split_date(date_string):
+    year, month, day = [int(item) for item in date_string.split("-")]
+    return date(year, month, day)
+
+
+def validate_date():
+    while True:
+        date_input = input()
+        try:
+            datetime.strptime(date_input, "%Y-%m-%d")
+            return date_input
+        except ValueError:
+            print("Invalid date format. Please enter a date in YYYY-MM-DD format.")
+
+
+if __name__ == "__main__":
+    generate_statement(["HOU1708434041S", 0, 0])
+
+
 #
 #
 # def filter_transaction_log_menu(transaction_log_entries, user):
@@ -68,5 +121,3 @@ from datetime import datetime
 #     return filtered_log
 
 
-if __name__ == "__main__":
-    pass

@@ -11,6 +11,11 @@ def load(filename):
         return None
 
 
+def get(file="log.txt"):
+    with open(file, "r") as file:
+        return file.readlines()
+
+
 def view(filename):
     try:
         with open(filename, "r") as file:

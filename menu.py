@@ -112,8 +112,9 @@ def user_menu(user, user_list):
                 transaction.perform_transfer(user, user_list)
                 file_manager.save(user_list)
             case "5":
-                transaction_log_entries = bank_statement.get_transaction_log()
-                bank_statement.filter_transaction_log_menu(transaction_log_entries, user)
+                pass
+                # transaction_log_entries = bank_statement.get_transaction_log()
+                # bank_statement.filter_transaction_log_menu(transaction_log_entries, user)
 
             case _:
                 print("Invalid choice")
