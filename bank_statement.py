@@ -26,6 +26,12 @@ def generate_statement(user):
                         break
             case "2":
                 start_date, end_date = get_dates()
+                logs_in_range = []
+                for log in filtered_logs:
+                    log_date = split_date(log[:10])
+                    if start_date <= log_date <= end_date:
+                        logs_in_range.append(log)
+                [print(log) for log in logs_in_range]
 
             case x if x.upper() == "X":
                 return
