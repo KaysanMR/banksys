@@ -27,10 +27,6 @@ def withdraw(user, amount):
         print("Insufficient funds.")
 
 
-def generate_statement(user):
-    print(f"Bank Statement for {user[1]}: \nBalance: {user[3]}")
-
-
 def transfer_funds(from_user, to_user, amount, user_list):
     from_user_balance = float(from_user[3])
 

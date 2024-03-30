@@ -136,7 +136,7 @@ def search(data):
     return results
 
 
-def select_account(data, session):
+def select_account(data):
     # search & display results
     users = search(data)
     headings = ["UID", "USERNAME"]
